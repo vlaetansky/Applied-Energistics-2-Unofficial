@@ -169,7 +169,7 @@ public class SlotCraftingTerm extends AppEngCraftingSlot
 					ic.setInventorySlotContents( x, this.getPattern().getStackInSlot( x ) );
 				}
 
-				final IRecipe r = Platform.findMatchingRecipe( ic, p.worldObj );
+				final IRecipe r = Platform.findMatchingRecipe(ic, p.worldObj);
 
 				if( r == null )
 				{
