@@ -653,7 +653,8 @@ public final class CraftingCPUCluster implements IAECluster, ICraftingCPU
 								continue;
 							}
 
-							ic = new InventoryCrafting( new ContainerNull(), 3, 3 );
+							ic = details.isCraftable() ? new InventoryCrafting( new ContainerNull(), 3, 3 ):
+									new InventoryCrafting( new ContainerNull(), details.getInputs().length, 1 );
 							boolean found = false;
 
 							for( int x = 0; x < input.length; x++ )
