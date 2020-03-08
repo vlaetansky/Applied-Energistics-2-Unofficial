@@ -23,6 +23,7 @@ import appeng.api.AEApi;
 import appeng.api.config.Actionable;
 import appeng.api.config.FuzzyMode;
 import appeng.api.config.PowerMultiplier;
+import appeng.api.config.Upgrades;
 import appeng.api.implementations.ICraftingPatternItem;
 import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridHost;
@@ -42,6 +43,7 @@ import appeng.api.util.WorldCoord;
 import appeng.container.ContainerNull;
 import appeng.core.AELog;
 import appeng.crafting.*;
+import appeng.helpers.DualityInterface;
 import appeng.me.cache.CraftingGridCache;
 import appeng.me.cluster.IAECluster;
 import appeng.tile.crafting.TileCraftingMonitorTile;
@@ -646,6 +648,9 @@ public final class CraftingCPUCluster implements IAECluster, ICraftingCPU
 									sum += anInput.getStackSize();
 								}
 							}
+							// upgraded interface uses more power
+							if (m instanceof DualityInterface)
+								sum *= Math.pow(4.0, ((DualityInterface)m).getInstalledUpgrades(Upgrades.PATTERN_CAPACITY));
 
 							// power...
 							if( eg.extractAEPower( sum, Actionable.MODULATE, PowerMultiplier.CONFIG ) < sum - 0.01 )
