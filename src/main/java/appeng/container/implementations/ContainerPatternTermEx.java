@@ -199,7 +199,8 @@ public class ContainerPatternTermEx extends ContainerMEMonitorable implements IA
 
     private ItemStack[] getOutputs()
     {
-        final List<ItemStack> list = new ArrayList<>(4);
+        //final List<ItemStack> list = new ArrayList<>(4);
+        final List<ItemStack> list = new ArrayList<ItemStack>(4);
         boolean hasValue = false;
 
         for (final OptionalSlotFake outputSlot : this.outputSlots) {
