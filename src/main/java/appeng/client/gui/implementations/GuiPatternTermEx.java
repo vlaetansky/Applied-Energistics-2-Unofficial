@@ -99,7 +99,7 @@ public class GuiPatternTermEx extends GuiMEMonitorable {
     }
 
     private void updateButtons(boolean val) {
-        int offset = val ? -18*3 : 18*3;
+        int offset = val ? ((-18) * 3) : (18 * 3);
         substitutionsEnabledBtn.xPosition += offset;
         substitutionsDisabledBtn.xPosition += offset;
         clearBtn.xPosition += offset;
