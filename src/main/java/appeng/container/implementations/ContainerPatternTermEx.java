@@ -241,6 +241,7 @@ public class ContainerPatternTermEx extends ContainerMEMonitorable implements IO
             }
         }
     }
+    @Override
     public void onUpdate( final String field, final Object oldValue, final Object newValue )
     {
         super.onUpdate( field, oldValue, newValue );
