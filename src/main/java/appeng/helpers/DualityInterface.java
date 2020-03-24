@@ -926,13 +926,8 @@ public class DualityInterface
 			final InventoryAdaptor ad = InventoryAdaptor.getAdaptor( te, s.getOpposite() );
 			if( ad != null )
 			{
-				if( this.isBlocking() )
-				{
-					if( ad.simulateRemove( 1, null, null ) != null )
-					{
-						continue;
-					}
-				}
+				if (this.isBlocking() && ad.containsItems())
+					continue;
 
 				if( this.acceptsItems( ad, table ) )
 				{
