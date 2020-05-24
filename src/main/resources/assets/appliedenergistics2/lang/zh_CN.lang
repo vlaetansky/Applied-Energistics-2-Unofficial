@@ -1,4 +1,4 @@
-# 方块
+# Blocks
 tile.appliedenergistics2.BlockCableBus.name=AE2线缆和(或)总线
 tile.appliedenergistics2.BlockCellWorkbench.name=元件工作台
 tile.appliedenergistics2.BlockCharger.name=充能器
@@ -51,7 +51,7 @@ tile.appliedenergistics2.BlockCraftingAccelerator.name=并行处理单元
 tile.appliedenergistics2.BlockCraftingUnit.name=合成单元
 tile.appliedenergistics2.BlockMolecularAssembler.name=分子装配室
 
-# 楼梯
+# Stairs
 tile.appliedenergistics2.ChiseledQuartzStairBlock.name=錾制赛特斯石英楼梯
 tile.appliedenergistics2.FluixStairBlock.name=福鲁伊克斯楼梯
 tile.appliedenergistics2.QuartzPillarStairBlock.name=竖纹赛特斯石英楼梯
@@ -170,6 +170,7 @@ gui.appliedenergistics2.Linked=已链接
 gui.appliedenergistics2.StoredSize=存储空间大小
 gui.appliedenergistics2.SkyChest=陨石箱子
 gui.appliedenergistics2.PatternTerminal=样板终端
+gui.appliedenergistics2.PatternTerminalEx=增广样板终端
 gui.appliedenergistics2.CraftingPattern=合成样板
 gui.appliedenergistics2.MolecularAssembler=分子装配室
 gui.appliedenergistics2.ProcessingPattern=处理样板
@@ -233,14 +234,14 @@ gui.appliedenergistics2.SmallFontCraft=Craft
 gui.appliedenergistics2.LargeFontCraft=+
 gui.appliedenergistics2.Nothing=无
 
-# GUI提示
+# GUI Tooltips
 gui.tooltips.appliedenergistics2.Stash=存储物品
 gui.tooltips.appliedenergistics2.StashDesc=将合成槽的物品返回网络
 gui.tooltips.appliedenergistics2.Substitutions=矿物词典替换
 gui.tooltips.appliedenergistics2.SubstitutionsDescEnabled=启用输入组件替换功能.
 gui.tooltips.appliedenergistics2.SubstitutionsDescDisabled=禁用输入组件替换功能.
-gui.tooltips.appliedenergistics2.SubstitutionsOn=启用替换
-gui.tooltips.appliedenergistics2.SubstitutionsOff=禁用替换
+gui.tooltips.appliedenergistics2.PatternSlotConfigTitle=切换终端模式
+gui.tooltips.appliedenergistics2.PatternSlotConfigInfo=在(16 -> 4)和(4 -> 16)之间切换样板模式
 gui.tooltips.appliedenergistics2.Encode=编码样板
 gui.tooltips.appliedenergistics2.EncodeDescription=将输入的样板写入当前编码样板,或可用的空样板.
 gui.tooltips.appliedenergistics2.FuzzyMode=模糊对比
@@ -325,15 +326,16 @@ gui.tooltips.appliedenergistics2.SchedulingModeRoundRobin=循环输出模式.
 gui.tooltips.appliedenergistics2.SchedulingModeRandom=随机输出模式.
 gui.tooltips.appliedenergistics2.ItemsStored=存储物品: %s
 gui.tooltips.appliedenergistics2.ItemsRequestable=可请求: %s
+gui.tooltips.appliedenergistics2.P2PFrequency=频率: %s
 
-# 单位
+# Units
 gui.appliedenergistics2.units.appliedenergstics=AE
 gui.appliedenergistics2.units.ic2=EU
 gui.appliedenergistics2.units.mekanism=Joules
 gui.appliedenergistics2.units.rotarycraft=Watts
 gui.appliedenergistics2.units.thermalexpansion=RF
 
-# 颜色
+# Colors
 gui.appliedenergistics2.White=白色
 gui.appliedenergistics2.Orange=橙色
 gui.appliedenergistics2.Magenta=品红色
@@ -352,7 +354,8 @@ gui.appliedenergistics2.Red=红色
 gui.appliedenergistics2.Black=黑色
 gui.appliedenergistics2.Fluix=Fluix默认色
 
-# waila
+# Waila
+waila.appliedenergistics2.Crafting=合成中
 waila.appliedenergistics2.DeviceOnline=设备开启
 waila.appliedenergistics2.DeviceOffline=设备关闭
 waila.appliedenergistics2.DeviceMissingChannel=设备缺少频道
@@ -361,9 +364,12 @@ waila.appliedenergistics2.Unlocked=未锁定
 waila.appliedenergistics2.Showing=显示
 waila.appliedenergistics2.Contains=容纳
 waila.appliedenergistics2.Channels=%1$d / %2$d 频道
-waila.appliedenergistics2.Crafting=合成中
+waila.appliedenergistics2.P2PUnlinked=未链接
+waila.appliedenergistics2.P2PInputOneOutput=已链接(输入)
+waila.appliedenergistics2.P2PInputManyOutputs=已链接(输入)- %d 输出
+waila.appliedenergistics2.P2POutput=已链接(输出)
 
-# 物品
+# Items
 item.appliedenergistics2.ItemBasicStorageCell.1k.name=1k-ME存储元件
 item.appliedenergistics2.ItemBasicStorageCell.4k.name=4k-ME存储元件
 item.appliedenergistics2.ItemBasicStorageCell.16k.name=16k-ME存储元件
@@ -383,6 +389,7 @@ item.appliedenergistics2.ItemMaterial.BasicCard.name=基础卡
 item.appliedenergistics2.ItemMaterial.BlankPattern.name=空白样板
 item.appliedenergistics2.ItemMaterial.CalcProcessor.name=运算处理器
 item.appliedenergistics2.ItemMaterial.CardCapacity.name=容量卡
+item.appliedenergistics2.ItemMaterial.CardPatternCapacity.name=样板容量卡
 item.appliedenergistics2.ItemMaterial.CardFuzzy.name=模糊卡
 item.appliedenergistics2.ItemMaterial.CardInverter.name=反相卡
 item.appliedenergistics2.ItemMaterial.CardRedstone.name=红石卡
@@ -415,7 +422,7 @@ item.appliedenergistics2.ItemMaterial.NetherQuartzDust.name=下界石英粉
 item.appliedenergistics2.ItemMaterial.PurifiedCertusQuartzCrystal.name=高纯赛特斯石英水晶
 item.appliedenergistics2.ItemMaterial.PurifiedFluixCrystal.name=高纯福鲁伊克斯水晶
 item.appliedenergistics2.ItemMaterial.PurifiedNetherQuartzCrystal.name=高纯下界石英水晶
-item.appliedenergistics2.ItemMaterial.QESingularity.name=量子缠绕态奇点
+item.appliedenergistics2.ItemMaterial.QESingularity.name=量子纠缠奇点
 item.appliedenergistics2.ItemMaterial.Silicon.name=硅
 item.appliedenergistics2.ItemMaterial.Singularity.name=奇点
 item.appliedenergistics2.ItemMaterial.Wireless.name=无线接收器
@@ -453,6 +460,7 @@ item.appliedenergistics2.ItemPart.Interface.name=ME接口
 item.appliedenergistics2.ItemPart.LevelEmitter.name=ME标准发信器
 item.appliedenergistics2.ItemPart.P2PTunnel.name=P2P通道
 item.appliedenergistics2.ItemPart.PatternTerminal.name=ME样板终端
+item.appliedenergistics2.ItemPart.PatternTerminalEx.name=ME增广样板终端
 item.appliedenergistics2.ItemPart.QuartzFiber.name=石英纤维
 item.appliedenergistics2.ItemPart.StorageBus.name=ME存储总线
 item.appliedenergistics2.ItemPart.Terminal.name=ME终端
@@ -496,7 +504,7 @@ item.appliedenergistics2.ToolBiometricCard.name=身份卡
 item.appliedenergistics2.ToolDebugCard.name=Dev.调试卡
 item.appliedenergistics2.ToolReplicatorCard.name=Dev.复制卡
 
-# 命令
+# Commands
 commands.ae2.usage=ae2提供的指令 - 输入/ae2 list查看指令列表,/ae2 help _____查看指令帮助.
 commands.ae2.permissions=你没有足够的权限来执行该指令.
 commands.ae2.ChunkLogger=是否向服务器日志打开区块载入与载出信息.(OP)
@@ -504,15 +512,15 @@ commands.ae2.ChunkLoggerOn=区块日志已打开
 commands.ae2.ChunkLoggerOff=区块日志已关闭
 commands.ae2.Supporters=显示ae2支持者列表
 
-# 成就
+# Achievements
 achievement.ae2.Compass=陨石猎手
 achievement.ae2.Compass.desc=制作一个陨石罗盘
 achievement.ae2.Presses=未知科技
 achievement.ae2.Presses.desc=发现一个处理器模板
 achievement.ae2.SpatialIO=空间协调
 achievement.ae2.SpatialIO.desc=制作一个空间IO端口
-achievement.ae2.SpatialIOExplorerer=大胆去做
-achievement.ae2.SpatialIOExplorerer.desc=已被存入空间存储元件
+achievement.ae2.SpatialIOExplorer=大胆去做
+achievement.ae2.SpatialIOExplorer.desc=存储于空间存储元件中
 achievement.ae2.StorageCell=比箱子更好
 achievement.ae2.StorageCell.desc=制作一个存储元件
 achievement.ae2.IOPort=元件互通
@@ -556,7 +564,7 @@ achievement.ae2.StorageBus.desc=制作一个存储总线
 achievement.ae2.QNB=量子隧道
 achievement.ae2.QNB.desc=制作一个链接室
 
-# 统计
+# Stats
 stat.ae2.ItemsInserted=物品已加入ME存储
 stat.ae2.ItemsExtracted=物品已取出ME存储
 stat.ae2.TurnedCranks=转动曲柄
