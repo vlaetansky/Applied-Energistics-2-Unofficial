@@ -636,10 +636,10 @@ public final class CraftingCPUCluster implements IAECluster, ICraftingCPU
 
 					if( !m.isBusy() )
 					{
+						double sum = 0;
 						if( ic == null )
 						{
 							final IAEItemStack[] input = details.getInputs();
-							double sum = 0;
 
 							for( final IAEItemStack anInput : input )
 							{
@@ -652,11 +652,9 @@ public final class CraftingCPUCluster implements IAECluster, ICraftingCPU
 							if (m instanceof DualityInterface)
 								sum *= Math.pow(4.0, ((DualityInterface)m).getInstalledUpgrades(Upgrades.PATTERN_CAPACITY));
 
-							// power...
-							if( eg.extractAEPower( sum, Actionable.MODULATE, PowerMultiplier.CONFIG ) < sum - 0.01 )
-							{
+							// check if there is enough power
+							if (eg.extractAEPower( sum, Actionable.SIMULATE, PowerMultiplier.CONFIG ) < sum - 0.01)
 								continue;
-							}
 
 							ic = details.isCraftable() ? new InventoryCrafting( new ContainerNull(), 3, 3 ):
 									new InventoryCrafting( new ContainerNull(), details.getInputs().length, 1 );
@@ -732,6 +730,7 @@ public final class CraftingCPUCluster implements IAECluster, ICraftingCPU
 
 						if( m.pushPattern( details, ic ) )
 						{
+							eg.extractAEPower( sum, Actionable.MODULATE, PowerMultiplier.CONFIG );
 							this.somethingChanged = true;
 							this.remainingOperations--;
 
