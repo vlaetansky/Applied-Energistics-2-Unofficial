@@ -109,4 +109,6 @@ public interface IParts
 	IItemDefinition conversionMonitor();
 
 	IItemDefinition patternTerminalEx();
+
+	IItemDefinition p2PTunnelGregtech();
 }

@@ -351,6 +351,13 @@ public abstract class PartP2PTunnel<T extends PartP2PTunnel> extends PartBasicSt
 					}
 					break;
 
+				case GT_POWER:
+					for( final ItemStack stack : parts.p2PTunnelGregtech().maybeStack( 1 ).asSet() )
+					{
+						newType = stack;
+					}
+					break;
+
 				default:
 					break;
 			}

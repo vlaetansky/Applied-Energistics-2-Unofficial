@@ -45,7 +45,7 @@ public enum GuiText
 	CraftingTerminal, FormationPlane, Inscriber, QuartzCuttingKnife,
 
 	// tunnel names
-	METunnel, ItemTunnel, RedstoneTunnel, EUTunnel, FluidTunnel, OCTunnel, LightTunnel, RFTunnel, PressureTunnel,
+	METunnel, ItemTunnel, RedstoneTunnel, EUTunnel, FluidTunnel, OCTunnel, LightTunnel, RFTunnel, PressureTunnel, GTTunnel,
 
 	StoredSize, CopyMode, CopyModeDesc, PatternTerminal,
 
