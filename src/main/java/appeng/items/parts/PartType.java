@@ -133,6 +133,8 @@ public enum PartType
 
 	P2PTunnelPressure( 469, EnumSet.of( AEFeature.P2PTunnel, AEFeature.P2PTunnelPressure ), EnumSet.of( IntegrationType.PneumaticCraft ), PartP2PPressure.class, GuiText.PressureTunnel ),
 
+	P2PTunnelGT( 470, EnumSet.of( AEFeature.P2PTunnel, AEFeature.P2PTunnelGregtech ), EnumSet.of( IntegrationType.GT ), PartP2PGT5Power.class, GuiText.GTTunnel ),
+
 	InterfaceTerminal( 480, EnumSet.of( AEFeature.InterfaceTerminal ), EnumSet.noneOf( IntegrationType.class ), PartInterfaceTerminal.class ),
 
 	PatternTerminalEx( 500, EnumSet.of( AEFeature.Patterns ), EnumSet.noneOf( IntegrationType.class ), PartPatternTerminalEx.class );
