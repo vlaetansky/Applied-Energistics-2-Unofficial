@@ -1,10 +1,5 @@
 package appeng.parts.p2p;
 
-import appeng.api.config.PowerUnits;
-import appeng.api.networking.IGridNode;
-import appeng.api.networking.ticking.IGridTickable;
-import appeng.api.networking.ticking.TickRateModulation;
-import appeng.api.networking.ticking.TickingRequest;
 import appeng.core.AEConfig;
 import appeng.me.GridAccessException;
 import cofh.api.energy.IEnergyReceiver;
@@ -18,18 +13,14 @@ import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import javax.annotation.Nullable;
-import java.util.Iterator;
 
-public class PartP2PGT5Power  extends PartP2PTunnel<PartP2PGT5Power> implements IPartGT5Power, IGridTickable {
-    private long buffer;
-    private long voltage;
+public class PartP2PGT5Power extends PartP2PTunnel<PartP2PGT5Power> implements IPartGT5Power {
     private TileEntity cachedTarget;
     private boolean isCachedTargetValid;
 
@@ -47,11 +38,13 @@ public class PartP2PGT5Power  extends PartP2PTunnel<PartP2PGT5Power> implements 
         return cct;
     }
 
+    @Override
     public void onTunnelNetworkChange() {
         this.isCachedTargetValid = false;
         this.cachedTarget = null;
     }
 
+    @Override
     public void onNeighborChanged() {
         this.isCachedTargetValid = false;
         this.cachedTarget = null;
@@ -59,21 +52,10 @@ public class PartP2PGT5Power  extends PartP2PTunnel<PartP2PGT5Power> implements 
 
     @SideOnly(Side.CLIENT)
     protected IIcon getTypeTexture() {
-        return Blocks.stone.getIcon(0, 0);
+        return Blocks.obsidian.getIcon(0, 0);
     }
 
-    public void readFromNBT(NBTTagCompound data) {
-        super.readFromNBT(data);
-        this.buffer = data.getLong("e");
-        this.voltage = data.getLong("v");
-    }
-
-    public void writeToNBT(NBTTagCompound data) {
-        super.writeToNBT(data);
-        data.setLong("e", this.buffer);
-        data.setLong("v", this.voltage);
-    }
-
+    @Override
     public boolean onPartActivate(EntityPlayer player, Vec3 pos) {
         if (!super.onPartActivate(player, pos) && !player.worldObj.isRemote && player.inventory.getCurrentItem() == null) {
             PartP2PGT5Power input = this.getInput();
@@ -89,31 +71,28 @@ public class PartP2PGT5Power  extends PartP2PTunnel<PartP2PGT5Power> implements 
             player.addChatMessage(chatComponent("Input location: ", (input == this ? "this block " : "") + inputLoc));
             player.addChatMessage(chatComponent("Name: ", input != null ? input.getCustomName() : this.getCustomName()));
             player.addChatMessage(chatComponent("Freq: ", "" + this.getFrequency()));
-            player.addChatMessage(chatComponent("Voltage: ", input == null ? "no input" : "" + input.voltage));
             return true;
         } else {
             return false;
         }
     }
 
-    private long getMaxBufferSize(long voltage) {
-        return voltage * 64L;
-    }
-
     public long injectEnergyUnits(long voltage, long amperage) {
-        if (!this.isOutput() && this.isActive() && voltage > 0L && amperage > 0L && this.buffer < this.getMaxBufferSize(voltage)) {
-            long lastBuffer = this.buffer;
-            long lastVoltage = this.voltage;
-            this.voltage = voltage;
-            this.buffer += (amperage * voltage * (1 - AEConfig.TUNNEL_POWER_LOSS));
-            if (lastBuffer < voltage && this.buffer >= voltage || lastVoltage <= 0L) {
-                try {
-                    this.getProxy().getTick().alertDevice(this.getProxy().getNode());
-                } catch (GridAccessException var10) {
+        if (!this.isOutput() && this.isActive() && voltage > 0L && amperage > 0L) {
+            long amperesUsed = 0;
+            long amperes = amperage;
+            long outvoltage = (long) (voltage * (1 - AEConfig.TUNNEL_POWER_LOSS));
+            try {
+                for (PartP2PGT5Power t: getOutputs()) {
+                    long received = t.doOutput(outvoltage, amperes);
+                    amperesUsed += received;
+                    amperes -= received;
+                    if (amperes <= 0L)
+                        break;
                 }
+            } catch (GridAccessException ignored) {
             }
-
-            return amperage;
+            return amperesUsed;
         } else {
             return 0L;
         }
@@ -125,34 +104,6 @@ public class PartP2PGT5Power  extends PartP2PTunnel<PartP2PGT5Power> implements 
 
     public boolean outputsEnergy() {
         return this.isOutput();
-    }
-
-    public TickingRequest getTickingRequest(IGridNode node) {
-        return new TickingRequest(1, 20, false, true);
-    }
-
-    public TickRateModulation tickingRequest(IGridNode node, int TicksSinceLastCall) {
-        long voltage = this.voltage;
-        if (!this.isOutput() && voltage > 0L && this.buffer >= voltage) {
-            long amperes = this.buffer / voltage;
-            long amperesUsed = 0L;
-
-            try {
-                for (PartP2PGT5Power t: getOutputs()) {
-                    long received = t.doOutput(voltage, amperes);
-                    amperesUsed += received;
-                    amperes -= received;
-                    if (amperes <= 0L)
-                        break;
-                }
-            } catch (GridAccessException ignored) {
-            }
-
-            this.buffer -= amperesUsed * voltage;
-            return this.buffer < voltage ? TickRateModulation.IDLE : TickRateModulation.URGENT;
-        } else {
-            return TickRateModulation.IDLE;
-        }
     }
 
     @Nullable
@@ -185,9 +136,9 @@ public class PartP2PGT5Power  extends PartP2PTunnel<PartP2PGT5Power> implements 
                 } else {
                     if (te instanceof IEnergySink) {
                         if (((IEnergySink) te).acceptsEnergyFrom(this.getTile(), oppositeSide)) {
-                            long rUsedAmperes;
-                            for (rUsedAmperes = 0L; aAmperage > rUsedAmperes && ((IEnergySink) te).getDemandedEnergy() > 0.0D && ((IEnergySink) te).injectEnergy(oppositeSide, (double) aVoltage, (double) aVoltage) < (double) aVoltage; ++rUsedAmperes) {
-                            }
+                            long rUsedAmperes = 0L;
+                            while (aAmperage > rUsedAmperes && ((IEnergySink) te).getDemandedEnergy() > 0.0D && ((IEnergySink) te).injectEnergy(oppositeSide, (double) aVoltage, (double) aVoltage) < (double) aVoltage)
+                                ++rUsedAmperes;
 
                             return rUsedAmperes;
                         }
