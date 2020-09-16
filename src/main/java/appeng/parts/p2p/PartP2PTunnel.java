@@ -436,6 +436,8 @@ public abstract class PartP2PTunnel<T extends PartP2PTunnel> extends PartBasicSt
 
 			p2pItem.writeToNBT( data );
 			data.setLong( "freq", this.getFrequency() );
+			if (hasCustomName())
+				data.setString("custom_name", getCustomName());
 
 			mc.setMemoryCardContents( is, type + ".name", data );
 			mc.notifyUser( player, MemoryCardMessages.SETTINGS_SAVED );
