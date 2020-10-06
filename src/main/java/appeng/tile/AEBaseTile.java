@@ -18,7 +18,6 @@
 
 package appeng.tile;
 
-
 import appeng.api.implementations.tiles.ISegmentedInventory;
 import appeng.api.util.ICommonTile;
 import appeng.api.util.IConfigManager;
@@ -52,10 +51,8 @@ import java.lang.ref.WeakReference;
 import java.lang.reflect.Method;
 import java.util.*;
 
-
 public class AEBaseTile extends TileEntity implements IOrientable, ICommonTile, ICustomNameObject
 {
-
 	private static final ThreadLocal<WeakReference<AEBaseTile>> DROP_NO_ITEMS = new ThreadLocal<WeakReference<AEBaseTile>>();
 	private static final Map<Class<? extends AEBaseTile>, Map<TileEventType, List<AETileEventHandler>>> HANDLERS = new HashMap<Class<? extends AEBaseTile>, Map<TileEventType, List<AETileEventHandler>>>();
 	private static final Map<Class<? extends TileEntity>, IStackSrc> ITEM_STACKS = new HashMap<Class<? extends TileEntity>, IStackSrc>();
@@ -64,6 +61,9 @@ public class AEBaseTile extends TileEntity implements IOrientable, ICommonTile, 
 	private String customName;
 	private ForgeDirection forward = ForgeDirection.UNKNOWN;
 	private ForgeDirection up = ForgeDirection.UNKNOWN;
+	private final int TICKS_FOR_LAG_AVERAGING = 32;
+	private int[] mTimeStatistics = new int[TICKS_FOR_LAG_AVERAGING];
+	private int mTimeStatisticsIndex = 0, mLagWarningCount = 0;
 
 	public static void registerTileItem( final Class<? extends TileEntity> c, final IStackSrc wat )
 	{
@@ -172,6 +172,14 @@ public class AEBaseTile extends TileEntity implements IOrientable, ICommonTile, 
 		{
 			h.tick( this );
 		}
+	}
+
+	public void logTiming(long t, int ticksSinceLastCall){
+		for (int i = 1; i < Math.min(ticksSinceLastCall, TICKS_FOR_LAG_AVERAGING); ++i)
+			mTimeStatistics[mTimeStatisticsIndex = (mTimeStatisticsIndex + 1) % TICKS_FOR_LAG_AVERAGING] = 0;
+		mTimeStatistics[mTimeStatisticsIndex = (mTimeStatisticsIndex + 1) % TICKS_FOR_LAG_AVERAGING] = (int)t;
+		if (t > 100000000 && mLagWarningCount++ < 10)
+			AELog.warn("WARNING: Possible Lag Source at [" + xCoord + ", " + yCoord + ", " + zCoord + "] in Dimension " + worldObj.provider.dimensionId + " with " + t + "ns caused by an instance of " + getClass());
 	}
 
 	@Override
@@ -585,5 +593,29 @@ public class AEBaseTile extends TileEntity implements IOrientable, ICommonTile, 
 	public void setName( final String name )
 	{
 		this.customName = name;
+	}
+
+	public ArrayList<String> getDebugInfo(EntityPlayer entityPlayer, int aLogLevel) {
+		ArrayList<String> tList = new ArrayList<String>();
+		if (aLogLevel > 1) {
+			if (mTimeStatistics.length > 0) {
+				double tAverageTime = 0;
+				double tWorstTime = 0;
+				for (int tTime : mTimeStatistics) {
+					tAverageTime += tTime;
+					if (tTime > tWorstTime) {
+						tWorstTime = tTime;
+					}
+					// Uncomment this line to print out tick-by-tick times.
+					//tList.add("tTime " + tTime);
+				}
+				tList.add("Average CPU load of ~" + (tAverageTime / mTimeStatistics.length) + "ns over "
+						+ mTimeStatistics.length + " ticks with worst time of " + tWorstTime + "ns. (Warning: data makes sense only for non-sleeping nodes!)");
+			}
+			if (mLagWarningCount > 0) {
+				tList.add("Caused " + (mLagWarningCount >= 10 ? "more than 10" : mLagWarningCount) + " Lag Spike Warnings (anything taking longer than 100 ms) on the Server.");
+			}
+		}
+		return tList;
 	}
 }
