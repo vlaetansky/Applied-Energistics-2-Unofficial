@@ -38,6 +38,7 @@ import appeng.core.settings.TickRates;
 import appeng.core.sync.GuiBridge;
 import appeng.helpers.Reflected;
 import appeng.me.GridAccessException;
+import appeng.tile.AEBaseTile;
 import appeng.util.InventoryAdaptor;
 import appeng.util.Platform;
 import appeng.util.inv.IInventoryDestination;
@@ -163,7 +164,10 @@ public class PartImportBus extends PartSharedItemBus implements IInventoryDestin
 	@Override
 	public TickRateModulation tickingRequest( final IGridNode node, final int ticksSinceLastCall )
 	{
-		return this.doBusWork();
+		long tTime = System.nanoTime();
+		TickRateModulation trm = this.doBusWork();
+		((AEBaseTile)getHost().getTile()).logTiming(System.nanoTime() - tTime, ticksSinceLastCall);
+		return trm;
 	}
 
 	@Override

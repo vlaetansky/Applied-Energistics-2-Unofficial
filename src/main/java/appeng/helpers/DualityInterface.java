@@ -60,6 +60,7 @@ import appeng.me.storage.MEMonitorPassThrough;
 import appeng.me.storage.NullInventory;
 import appeng.parts.automation.StackUpgradeInventory;
 import appeng.parts.automation.UpgradeInventory;
+import appeng.tile.AEBaseTile;
 import appeng.tile.inventory.AppEngInternalAEInventory;
 import appeng.tile.inventory.AppEngInternalInventory;
 import appeng.tile.inventory.IAEAppEngInventory;
@@ -564,13 +565,14 @@ public class DualityInterface
 		{
 			return TickRateModulation.SLEEP;
 		}
-
+		long tTime = System.nanoTime();
 		if( this.hasItemsToSend() )
 		{
 			this.pushItemsOut( this.iHost.getTargets() );
 		}
 
 		final boolean couldDoWork = this.updateStorage();
+		((AEBaseTile)getHost().getTile()).logTiming(System.nanoTime() - tTime, ticksSinceLastCall);
 		return this.hasWorkToDo() ? ( couldDoWork ? TickRateModulation.URGENT : TickRateModulation.SLOWER ) : TickRateModulation.SLEEP;
 	}
 
