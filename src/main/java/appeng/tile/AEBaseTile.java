@@ -61,7 +61,7 @@ public class AEBaseTile extends TileEntity implements IOrientable, ICommonTile, 
 	private String customName;
 	private ForgeDirection forward = ForgeDirection.UNKNOWN;
 	private ForgeDirection up = ForgeDirection.UNKNOWN;
-	private final int TICKS_FOR_LAG_AVERAGING = 25;
+	private final int TICKS_FOR_LAG_AVERAGING = 32;
 	private int[] mTimeStatistics = new int[TICKS_FOR_LAG_AVERAGING];
 	private int mTimeStatisticsIndex = 0, mLagWarningCount = 0;
 
@@ -175,9 +175,9 @@ public class AEBaseTile extends TileEntity implements IOrientable, ICommonTile, 
 	}
 
 	public void logTiming(long t, int ticksSinceLastCall){
-		for (int i = 1; i < Math.min(ticksSinceLastCall, 25); ++i)
-			mTimeStatistics[mTimeStatisticsIndex = (mTimeStatisticsIndex + 1) % 25] = 0;
-		mTimeStatistics[mTimeStatisticsIndex = (mTimeStatisticsIndex + 1) % 25] = (int)t;
+		for (int i = 1; i < Math.min(ticksSinceLastCall, TICKS_FOR_LAG_AVERAGING); ++i)
+			mTimeStatistics[mTimeStatisticsIndex = (mTimeStatisticsIndex + 1) % TICKS_FOR_LAG_AVERAGING] = 0;
+		mTimeStatistics[mTimeStatisticsIndex = (mTimeStatisticsIndex + 1) % TICKS_FOR_LAG_AVERAGING] = (int)t;
 		if (t > 100000000 && mLagWarningCount++ < 10)
 			AELog.warn("WARNING: Possible Lag Source at [" + xCoord + ", " + yCoord + ", " + zCoord + "] in Dimension " + worldObj.provider.dimensionId + " with " + t + "ns caused by an instance of " + getClass());
 	}
