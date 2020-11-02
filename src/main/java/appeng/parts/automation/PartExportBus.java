@@ -41,7 +41,6 @@ import appeng.core.sync.GuiBridge;
 import appeng.helpers.MultiCraftingTracker;
 import appeng.helpers.Reflected;
 import appeng.me.GridAccessException;
-import appeng.tile.AEBaseTile;
 import appeng.util.InventoryAdaptor;
 import appeng.util.Platform;
 import appeng.util.item.AEItemStack;
@@ -257,10 +256,7 @@ public class PartExportBus extends PartSharedItemBus implements ICraftingRequest
 	@Override
 	public TickRateModulation tickingRequest( final IGridNode node, final int ticksSinceLastCall )
 	{
-		long tTime = System.nanoTime();
-		TickRateModulation trm = this.doBusWork();
-		((AEBaseTile)getHost().getTile()).logTiming(System.nanoTime() - tTime, ticksSinceLastCall);
-		return trm;
+		return this.doBusWork();
 	}
 
 	@Override

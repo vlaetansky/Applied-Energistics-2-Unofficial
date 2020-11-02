@@ -30,18 +30,15 @@ import appeng.core.features.AETileBlockFeatureHandler;
 import appeng.core.features.IAEFeature;
 import appeng.core.sync.GuiBridge;
 import appeng.helpers.ICustomCollision;
-import appeng.integration.IntegrationType;
 import appeng.items.tools.quartz.ToolQuartzCuttingKnife;
 import appeng.tile.AEBaseTile;
 import appeng.tile.networking.TileCableBus;
 import appeng.tile.storage.TileSkyChest;
-import appeng.transformer.annotations.Integration;
 import appeng.util.Platform;
 import appeng.util.SettingsFrom;
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import cpw.mods.fml.relauncher.ReflectionHelper;
-import gregtech.api.interfaces.IDebugableBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -66,8 +63,7 @@ import java.util.EnumSet;
 import java.util.List;
 
 
-@Integration.Interface( iname = IntegrationType.GT, iface = "gregtech.api.interfaces.IDebugableBlock" )
-public abstract class AEBaseTileBlock extends AEBaseBlock implements IAEFeature, ITileEntityProvider, IDebugableBlock
+public abstract class AEBaseTileBlock extends AEBaseBlock implements IAEFeature, ITileEntityProvider
 {
 
 	@Nonnull
@@ -366,12 +362,5 @@ public abstract class AEBaseTileBlock extends AEBaseBlock implements IAEFeature,
 
 		return super.getCustomCollision( w, x, y, z );
 	}
-	@Override
-	public ArrayList<String> getDebugInfo(EntityPlayer entityPlayer, int x, int y, int z, int aLogLevel) {
-		final AEBaseTile te = this.getTileEntity( entityPlayer.worldObj, x, y, z );
-		if (te != null)
-			return te.getDebugInfo(entityPlayer, aLogLevel);
-		else
-			return null;
-	}
+
 }
