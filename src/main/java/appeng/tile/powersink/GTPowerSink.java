@@ -21,12 +21,12 @@ public abstract class GTPowerSink extends AERootPoweredTile implements IEnergyCo
     public long injectEnergyUnits(byte side, long voltage, long amperage) {
         double e = PowerUnits.EU.convertTo(PowerUnits.AE, voltage * amperage);
         double overflow = PowerUnits.AE.convertTo(PowerUnits.EU, this.funnelPowerIntoStorage(e, Actionable.SIMULATE));
-        long amps = amperage - (int)Math.ceil(overflow / voltage);
-        if (amps > 0) {
-            e = PowerUnits.EU.convertTo(PowerUnits.AE, voltage * amps);
+        long used = amperage - (int)Math.ceil(overflow / voltage);
+        if (used > 0) {
+            e = PowerUnits.EU.convertTo(PowerUnits.AE, voltage * used);
             PowerUnits.AE.convertTo(PowerUnits.EU, this.funnelPowerIntoStorage(e, Actionable.MODULATE));
         }
-        return amperage - amps;
+        return used;
     }
 
     @Override
