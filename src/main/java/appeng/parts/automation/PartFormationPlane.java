@@ -428,7 +428,7 @@ public class PartFormationPlane extends PartUpgradeable implements ICellContaine
 
 		if( w.getBlock( x, y, z ).isReplaceable( w, x, y, z ) )
 		{
-			if( placeBlock == YesNo.YES && ( i instanceof ItemBlock || i instanceof IPlantable || i instanceof ItemSkull || i instanceof ItemFirework || i instanceof IPartItem || i instanceof ItemReed ) )
+			if( placeBlock == YesNo.YES && ( i instanceof ItemBlock || i instanceof IPlantable || i instanceof ItemSkull || i instanceof ItemFirework || i instanceof ItemReed ) )
 			{
 				final EntityPlayer player = Platform.getPlayer( (WorldServer) w );
 				Platform.configurePlayer( player, side, this.getTile() );
@@ -474,6 +474,11 @@ public class PartFormationPlane extends PartUpgradeable implements ICellContaine
 							i.onItemUse( is, player, w, x, y, z, side.getOpposite().ordinal(), side.offsetX, side.offsetY, side.offsetZ );
 						}
 
+						maxStorage -= is.stackSize;
+					}
+					else if (i instanceof ItemFirework)
+					{
+						i.onItemUse( is, player, w, x, y, z, side.getOpposite().ordinal(), side.offsetX, side.offsetY, side.offsetZ );
 						maxStorage -= is.stackSize;
 					}
 					else
