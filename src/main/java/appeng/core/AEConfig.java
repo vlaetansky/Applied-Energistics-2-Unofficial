@@ -114,7 +114,7 @@ public final class AEConfig extends Configuration implements IConfigurableObject
 		PowerUnits.WA.conversionRatio = this.get( "PowerRatios", "RotaryCraft", DEFAULT_RTC_EXCHANGE ).getDouble( DEFAULT_RTC_EXCHANGE );
 		final double DEFAULT_RF_EXCHANGE = 0.5;
 		PowerUnits.RF.conversionRatio = this.get( "PowerRatios", "ThermalExpansion", DEFAULT_RF_EXCHANGE ).getDouble( DEFAULT_RF_EXCHANGE );
-		final double DEFAULT_TUNNEL_POWER_LOSS = 0.15;
+		final double DEFAULT_TUNNEL_POWER_LOSS = 0.05;
 		TUNNEL_POWER_LOSS = this.get("PowerRatios", "TunnelPowerLoss", DEFAULT_TUNNEL_POWER_LOSS).getDouble(DEFAULT_TUNNEL_POWER_LOSS);
 		if (TUNNEL_POWER_LOSS < 0 || TUNNEL_POWER_LOSS >= 1)
 			TUNNEL_POWER_LOSS = DEFAULT_TUNNEL_POWER_LOSS;
