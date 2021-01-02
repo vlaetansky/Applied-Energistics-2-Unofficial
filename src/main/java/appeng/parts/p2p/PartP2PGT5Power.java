@@ -26,7 +26,6 @@ public class PartP2PGT5Power extends PartP2PTunnel<PartP2PGT5Power> implements I
 
     public PartP2PGT5Power(ItemStack is) {
         super(is);
-        this.getProxy().setFlags();
     }
 
     private static IChatComponent chatComponent(String title, String value) {
@@ -40,12 +39,14 @@ public class PartP2PGT5Power extends PartP2PTunnel<PartP2PGT5Power> implements I
 
     @Override
     public void onTunnelNetworkChange() {
+        super.onTunnelNetworkChange();
         this.isCachedTargetValid = false;
         this.cachedTarget = null;
     }
 
     @Override
     public void onNeighborChanged() {
+        super.onNeighborChanged();
         this.isCachedTargetValid = false;
         this.cachedTarget = null;
     }
