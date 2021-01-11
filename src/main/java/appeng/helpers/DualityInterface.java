@@ -889,6 +889,11 @@ public class DualityInterface
 		}
 		return true;
 	}
+	private boolean inventoryCountsAsEmpty(TileEntity te, InventoryAdaptor ad)
+	{
+		return te.getBlockType().getUnlocalizedName().equals("gt.blockmachines") && gtMachineHasOnlyCircuit(ad);
+	}
+
 	@Override
 	public boolean pushPattern( final ICraftingPatternDetails patternDetails, final InventoryCrafting table )
 	{
@@ -935,10 +940,8 @@ public class DualityInterface
 			final InventoryAdaptor ad = InventoryAdaptor.getAdaptor( te, s.getOpposite() );
 			if( ad != null )
 			{
-				if (this.isBlocking() && ad.containsItems()) {
-					if (!te.getBlockType().getUnlocalizedName().equals("gt.blockmachines") || !gtMachineHasOnlyCircuit(ad))
-						continue;
-				}
+				if (this.isBlocking() && ad.containsItems() && !inventoryCountsAsEmpty(te, ad))
+					continue;
 
 				if( this.acceptsItems( ad, table ) )
 				{
@@ -985,7 +988,7 @@ public class DualityInterface
 				final InventoryAdaptor ad = InventoryAdaptor.getAdaptor( te, s.getOpposite() );
 				if( ad != null )
 				{
-					if( ad.simulateRemove( 1, null, null ) == null )
+					if( ad.simulateRemove( 1, null, null ) == null || inventoryCountsAsEmpty(te, ad))
 					{
 						allAreBusy = false;
 						break;
