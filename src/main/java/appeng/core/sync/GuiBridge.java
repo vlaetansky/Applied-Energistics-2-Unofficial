@@ -215,8 +215,9 @@ public enum GuiBridge implements IGuiHandler
 	public Object getServerGuiElement( final int ordinal, final EntityPlayer player, final World w, final int x, final int y, final int z )
 	{
 		final ForgeDirection side = ForgeDirection.getOrientation( ordinal & 0x07 );
-		final GuiBridge ID = values()[ordinal >> 4];
+		final GuiBridge ID = values()[ordinal >> 5];
 		final boolean stem = ( ( ordinal >> 3 ) & 1 ) == 1;
+		final boolean xIsSlotIndex = ( ( ordinal >> 4 ) & 1 ) == 1;
 		if( ID.type.isItem() )
 		{
 			ItemStack it = null;
@@ -224,7 +225,7 @@ public enum GuiBridge implements IGuiHandler
 			{
 				it = player.inventory.getCurrentItem();
 			}
-			else if( x >= 0 && x < player.inventory.mainInventory.length )
+			else if( xIsSlotIndex && x >= 0 && x < player.inventory.mainInventory.length )
 			{
 				it = player.inventory.getStackInSlot( x );
 			}
@@ -397,8 +398,9 @@ public enum GuiBridge implements IGuiHandler
 	public Object getClientGuiElement( final int ordinal, final EntityPlayer player, final World w, final int x, final int y, final int z )
 	{
 		final ForgeDirection side = ForgeDirection.getOrientation( ordinal & 0x07 );
-		final GuiBridge ID = values()[ordinal >> 4];
+		final GuiBridge ID = values()[ordinal >> 5];
 		final boolean stem = ( ( ordinal >> 3 ) & 1 ) == 1;
+		final boolean xIsSlotIndex = ( ( ordinal >> 4 ) & 1 ) == 1;
 		if( ID.type.isItem() )
 		{
 			ItemStack it = null;
@@ -406,7 +408,7 @@ public enum GuiBridge implements IGuiHandler
 			{
 				it = player.inventory.getCurrentItem();
 			}
-			else if( x >= 0 && x < player.inventory.mainInventory.length )
+			else if (xIsSlotIndex && x >= 0 && x < player.inventory.mainInventory.length )
 			{
 				it = player.inventory.getStackInSlot( x );
 			}
