@@ -338,15 +338,15 @@ public class Platform
 		{
 			if( tile == null && type.getType() == GuiHostType.ITEM )
 			{
-				p.openGui( AppEng.instance(), type.ordinal() << 4, p.getEntityWorld(), p.inventory.currentItem, 0, 0 );
+				p.openGui( AppEng.instance(), type.ordinal() << 5 | (1 << 4), p.getEntityWorld(), p.inventory.currentItem, 0, 0 );
 			}
 			else if( tile == null || type.getType() == GuiHostType.ITEM )
 			{
-				p.openGui( AppEng.instance(), type.ordinal() << 4 | ( 1 << 3 ), p.getEntityWorld(), x, y, z );
+				p.openGui( AppEng.instance(), type.ordinal() << 5 | ( 1 << 3 ), p.getEntityWorld(), x, y, z );
 			}
 			else
 			{
-				p.openGui( AppEng.instance(), type.ordinal() << 4 | ( side.ordinal() ), tile.getWorldObj(), x, y, z );
+				p.openGui( AppEng.instance(), type.ordinal() << 5 | ( side.ordinal() ), tile.getWorldObj(), x, y, z );
 			}
 		}
 	}
