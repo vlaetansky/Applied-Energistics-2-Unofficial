@@ -545,11 +545,12 @@ public class PartFormationPlane extends PartUpgradeable implements ICellContaine
 							if (((EntityItem)result).getEntityItem().getItem() == Item.getItemFromBlock(Blocks.dragon_egg))
 							{ 	// Ducttape fix for HEE replacing the Dragon Egg
 								// HEE does cancel the event but does not mark passed entity as dead
-								worked = !result.isDead;
+								worked = true;
 							}
 							else {
+								// e.g. ExU item collector cancels item spawn, but takes the item inside
+								worked = result.isDead;
 								result.setDead();
-								worked = false;
 							}
 						}
 					}
