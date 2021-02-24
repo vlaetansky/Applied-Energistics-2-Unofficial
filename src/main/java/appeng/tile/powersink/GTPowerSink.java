@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.fluids.IFluidHandler;
 
-@Integration.Interface( iname = IntegrationType.GT, iface = "gregtech.api.interfaces.tileentity.IEnergyConnected" )
+@Integration.Interface(iname = IntegrationType.GT, iface = "gregtech.api.interfaces.tileentity.IEnergyConnected" )
 public abstract class GTPowerSink extends AERootPoweredTile implements IEnergyConnected {
     @Override
     public long injectEnergyUnits(byte side, long voltage, long amperage) {
@@ -144,21 +144,25 @@ public abstract class GTPowerSink extends AERootPoweredTile implements IEnergyCo
         return null;
     }
 
+    @Integration.Method(iname = IntegrationType.GT)
     @Override
     public IGregTechTileEntity getIGregTechTileEntity(int i, int i1, int i2) {
         return null;
     }
 
+    @Integration.Method(iname = IntegrationType.GT)
     @Override
     public IGregTechTileEntity getIGregTechTileEntityOffset(int i, int i1, int i2) {
         return null;
     }
 
+    @Integration.Method(iname = IntegrationType.GT)
     @Override
     public IGregTechTileEntity getIGregTechTileEntityAtSide(byte b) {
         return null;
     }
 
+    @Integration.Method(iname = IntegrationType.GT)
     @Override
     public IGregTechTileEntity getIGregTechTileEntityAtSideAndDistance(byte b, int i) {
         return null;
