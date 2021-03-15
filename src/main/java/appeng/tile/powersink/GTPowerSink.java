@@ -20,12 +20,18 @@ public abstract class GTPowerSink extends AERootPoweredTile implements IEnergyCo
     @Override
     public long injectEnergyUnits(byte side, long voltage, long amperage) {
         double e = PowerUnits.EU.convertTo(PowerUnits.AE, voltage * amperage);
-        double overflow = PowerUnits.AE.convertTo(PowerUnits.EU, this.funnelPowerIntoStorage(e, Actionable.SIMULATE));
-        long used = amperage - (int)Math.ceil(overflow / voltage);
+        double overflow = this.funnelPowerIntoStorage(e, Actionable.SIMULATE);
+        // Energy grid may keep some "extra energy" that it is happy to get rid of
+        // so overflow may actually be greater than input
+        if (overflow >= e)
+            return 0;
+        long used = amperage - (int)Math.ceil(PowerUnits.AE.convertTo(PowerUnits.EU, overflow) / voltage);
         if (used > 0) {
             e = PowerUnits.EU.convertTo(PowerUnits.AE, voltage * used);
             PowerUnits.AE.convertTo(PowerUnits.EU, this.funnelPowerIntoStorage(e, Actionable.MODULATE));
         }
+        else if (used < 0)
+            used = 0;
         return used;
     }
 
