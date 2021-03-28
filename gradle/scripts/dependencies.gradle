@@ -133,7 +133,9 @@ dependencies {
     compileOnly "codechicken:CodeChickenCore:${minecraft_version}-${code_chicken_core_version}:dev"
     compileOnly "codechicken:NotEnoughItems:${minecraft_version}-${nei_version}:dev"
     compileOnly "com.gregoriust.gregtech:gregtech:${gt_version}:dev"
+	
 
+    compile files("lib/CoFHLib-[1.7.10]1.2.1-185-dev.jar") 
     compile files("lib/buildcraft-${bc_version}-dev.jar")
     compile files("lib/PneumaticCraft-${minecraft_version}-${pneumaticcraft_version}-api.jar")
 
