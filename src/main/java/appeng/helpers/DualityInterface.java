@@ -87,6 +87,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import cofh.api.transport.IItemDuct;
 
 import java.util.*;
 
@@ -598,23 +599,27 @@ public class DualityInterface
 				}
 
 				final InventoryAdaptor ad = InventoryAdaptor.getAdaptor( te, s.getOpposite() );
+				ItemStack Result = whatToSend;
 				if( ad != null )
 				{
-					final ItemStack Result = ad.addItems( whatToSend );
+					Result = ad.addItems( whatToSend );
+				}
+				else if (te instanceof IItemDuct)
+				{
+					Result = ((IItemDuct)te).insertItem(s.getOpposite(), whatToSend);
+				}
+				if( Result == null )
+				{
+					whatToSend = null;
+				}
+				else
+				{
+					whatToSend.stackSize -= whatToSend.stackSize - Result.stackSize;
+				}
 
-					if( Result == null )
-					{
-						whatToSend = null;
-					}
-					else
-					{
-						whatToSend.stackSize -= whatToSend.stackSize - Result.stackSize;
-					}
-
-					if( whatToSend == null )
-					{
-						break;
-					}
+				if( whatToSend == null )
+				{
+					break;
 				}
 			}
 
@@ -950,11 +955,31 @@ public class DualityInterface
 						final ItemStack is = table.getStackInSlot( x );
 						if( is != null )
 						{
-							final ItemStack added = ad.addItems( is );
-							this.addToSendList( added );
+							this.addToSendList( ad.addItems( is ) );
 						}
 					}
 					this.pushItemsOut( possibleDirections );
+					return true;
+				}
+			}
+			else if (te instanceof IItemDuct)
+			{
+				boolean hadAcceptedSome = false;
+				for( int x = 0; x < table.getSizeInventory(); x++ )
+				{
+					final ItemStack is = table.getStackInSlot( x );
+					if (is != null)
+					{
+						final ItemStack rest = ((IItemDuct)te).insertItem(s.getOpposite(), is);
+						if (!hadAcceptedSome && rest != null && rest.stackSize == is.stackSize)
+							break; // conduit should accept all the pattern or nothing.
+						hadAcceptedSome = true;
+						this.addToSendList(rest);
+					}
+				}
+				if (hadAcceptedSome)
+				{
+					this.pushItemsOut(possibleDirections);
 					return true;
 				}
 			}
