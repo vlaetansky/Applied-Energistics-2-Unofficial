@@ -25,8 +25,10 @@ import appeng.client.gui.AEBaseGui;
 import appeng.client.gui.widgets.GuiImgButton;
 import appeng.container.implementations.ContainerUpgradeable;
 import appeng.core.localization.GuiText;
+import appeng.core.sync.GuiBridge;
 import appeng.core.sync.network.NetworkHandler;
 import appeng.core.sync.packets.PacketConfigButton;
+import appeng.core.sync.packets.PacketSwitchGuis;
 import appeng.parts.automation.PartExportBus;
 import appeng.parts.automation.PartImportBus;
 import net.minecraft.client.gui.GuiButton;
@@ -44,6 +46,7 @@ public class GuiUpgradeable extends AEBaseGui
 	protected GuiImgButton fuzzyMode;
 	protected GuiImgButton craftMode;
 	protected GuiImgButton schedulingMode;
+	protected GuiImgButton oreFilter;
 
 	public GuiUpgradeable( final InventoryPlayer inventoryPlayer, final IUpgradeableHost te )
 	{
@@ -78,11 +81,13 @@ public class GuiUpgradeable extends AEBaseGui
 		this.fuzzyMode = new GuiImgButton( this.guiLeft - 18, this.guiTop + 28, Settings.FUZZY_MODE, FuzzyMode.IGNORE_ALL );
 		this.craftMode = new GuiImgButton( this.guiLeft - 18, this.guiTop + 48, Settings.CRAFT_ONLY, YesNo.NO );
 		this.schedulingMode = new GuiImgButton( this.guiLeft - 18, this.guiTop + 68, Settings.SCHEDULING_MODE, SchedulingMode.DEFAULT );
+		this.oreFilter = new GuiImgButton( this.guiLeft - 18, this.guiTop + 88, Settings.ACTIONS, ActionItems.ORE_FILTER);
 
 		this.buttonList.add( this.craftMode );
 		this.buttonList.add( this.redstoneMode );
 		this.buttonList.add( this.fuzzyMode );
 		this.buttonList.add( this.schedulingMode );
+		this.buttonList.add( this.oreFilter );
 	}
 
 	@Override
@@ -147,6 +152,10 @@ public class GuiUpgradeable extends AEBaseGui
 		{
 			this.schedulingMode.setVisibility( this.bc.getInstalledUpgrades( Upgrades.CAPACITY ) > 0 && this.bc instanceof PartExportBus );
 		}
+		if( this.oreFilter != null )
+		{
+			this.oreFilter.setVisibility( this.bc.getInstalledUpgrades( Upgrades.ORE_FILTER ) > 0);
+		}
 	}
 
 	protected String getBackground()
@@ -189,6 +198,11 @@ public class GuiUpgradeable extends AEBaseGui
 		if( btn == this.schedulingMode )
 		{
 			NetworkHandler.instance.sendToServer( new PacketConfigButton( this.schedulingMode.getSetting(), backwards ) );
+		}
+
+		if( btn == this.oreFilter )
+		{
+			NetworkHandler.instance.sendToServer( new PacketSwitchGuis( GuiBridge.GUI_ORE_FILTER ) );
 		}
 	}
 }
