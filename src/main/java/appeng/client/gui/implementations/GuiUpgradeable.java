@@ -81,7 +81,7 @@ public class GuiUpgradeable extends AEBaseGui
 		this.fuzzyMode = new GuiImgButton( this.guiLeft - 18, this.guiTop + 28, Settings.FUZZY_MODE, FuzzyMode.IGNORE_ALL );
 		this.craftMode = new GuiImgButton( this.guiLeft - 18, this.guiTop + 48, Settings.CRAFT_ONLY, YesNo.NO );
 		this.schedulingMode = new GuiImgButton( this.guiLeft - 18, this.guiTop + 68, Settings.SCHEDULING_MODE, SchedulingMode.DEFAULT );
-		this.oreFilter = new GuiImgButton( this.guiLeft - 18, this.guiTop + 88, Settings.ACTIONS, ActionItems.ORE_FILTER);
+		this.oreFilter = new GuiImgButton( this.guiLeft - 18, this.guiTop + 28, Settings.ACTIONS, ActionItems.ORE_FILTER);
 
 		this.buttonList.add( this.craftMode );
 		this.buttonList.add( this.redstoneMode );
@@ -142,7 +142,7 @@ public class GuiUpgradeable extends AEBaseGui
 		}
 		if( this.fuzzyMode != null )
 		{
-			this.fuzzyMode.setVisibility( this.bc.getInstalledUpgrades( Upgrades.FUZZY ) > 0 );
+			this.fuzzyMode.setVisibility( this.bc.getInstalledUpgrades( Upgrades.FUZZY ) > 0 && this.bc.getInstalledUpgrades( Upgrades.ORE_FILTER ) == 0);
 		}
 		if( this.craftMode != null )
 		{

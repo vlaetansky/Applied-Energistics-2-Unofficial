@@ -629,7 +629,7 @@ public final class Registration
 		Upgrades.FUZZY.registerItem( parts.formationPlane(), 1 );
 		Upgrades.INVERTER.registerItem( parts.formationPlane(), 1 );
 		Upgrades.CAPACITY.registerItem( parts.formationPlane(), 5 );
-		Upgrades.ORE_FILTER.registerItem( parts.formationPlane(), 1 );
+		//Upgrades.ORE_FILTER.registerItem( parts.formationPlane(), 1 );
 
 		// Matter Cannon
 		Upgrades.FUZZY.registerItem( items.massCannon(), 1 );
