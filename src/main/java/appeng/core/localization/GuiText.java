@@ -93,8 +93,12 @@ public enum GuiText
 
 	// processing pattern terminal
 	PatternTerminalEx,
+
 	// renaming GUI label
 	Renamer,
+
+	// oredictionary filter GUI label
+	OreFilterLabel,
 
 	// Used in a ME Interface when no appropriate TileEntity was detected near it
 	Nothing;

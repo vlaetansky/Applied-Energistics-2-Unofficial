@@ -590,6 +590,7 @@ public final class Registration
 		Upgrades.REDSTONE.registerItem( parts.importBus(), 1 );
 		Upgrades.CAPACITY.registerItem( parts.importBus(), 2 );
 		Upgrades.SPEED.registerItem( parts.importBus(), 4 );
+		Upgrades.ORE_FILTER.registerItem( parts.importBus(), 1 );
 
 		// Export Bus
 		Upgrades.FUZZY.registerItem( parts.exportBus(), 1 );
@@ -597,6 +598,7 @@ public final class Registration
 		Upgrades.CAPACITY.registerItem( parts.exportBus(), 2 );
 		Upgrades.SPEED.registerItem( parts.exportBus(), 4 );
 		Upgrades.CRAFTING.registerItem( parts.exportBus(), 1 );
+		Upgrades.ORE_FILTER.registerItem( parts.exportBus(), 1 );
 
 		// Storage Cells
 		Upgrades.FUZZY.registerItem( items.cell1k(), 1 );
@@ -621,11 +623,13 @@ public final class Registration
 		Upgrades.FUZZY.registerItem( parts.storageBus(), 1 );
 		Upgrades.INVERTER.registerItem( parts.storageBus(), 1 );
 		Upgrades.CAPACITY.registerItem( parts.storageBus(), 5 );
+		Upgrades.ORE_FILTER.registerItem( parts.storageBus(), 1 );
 
 		// Formation Plane
 		Upgrades.FUZZY.registerItem( parts.formationPlane(), 1 );
 		Upgrades.INVERTER.registerItem( parts.formationPlane(), 1 );
 		Upgrades.CAPACITY.registerItem( parts.formationPlane(), 5 );
+		//Upgrades.ORE_FILTER.registerItem( parts.formationPlane(), 1 );
 
 		// Matter Cannon
 		Upgrades.FUZZY.registerItem( items.massCannon(), 1 );
