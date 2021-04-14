@@ -500,6 +500,11 @@ public class CellInventory implements ICellInventory
 	{
 		return this.cellType.getFuzzyMode( this.cellItem );
 	}
+	@Override
+	public String getOreFilter()
+	{
+		return this.cellType.getOreFilter( this.cellItem );
+	}
 
 	@Override
 	public IInventory getConfigInventory()

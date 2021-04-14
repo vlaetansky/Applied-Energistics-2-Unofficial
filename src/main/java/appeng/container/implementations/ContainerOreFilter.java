@@ -43,7 +43,6 @@ public class ContainerOreFilter extends AEBaseContainer
     @Override
     public void detectAndSendChanges()
     {
-        this.verifyPermissions( SecurityPermissions.BUILD, false );
         if (Platform.isServer())
             this.filter = this.filterHost.getFilter();
         super.detectAndSendChanges();
