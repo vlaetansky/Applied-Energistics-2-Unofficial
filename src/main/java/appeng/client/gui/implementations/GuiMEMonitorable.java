@@ -39,6 +39,7 @@ import appeng.container.slot.SlotCraftingMatrix;
 import appeng.container.slot.SlotFakeCraftingMatrix;
 import appeng.core.AEConfig;
 import appeng.core.AELog;
+import appeng.core.localization.ButtonToolTips;
 import appeng.core.localization.GuiText;
 import appeng.core.sync.GuiBridge;
 import appeng.core.sync.network.NetworkHandler;
@@ -304,6 +305,7 @@ public class GuiMEMonitorable extends AEBaseMEGui implements ISortSource, IConfi
 		this.searchField.setMaxStringLength( 25 );
 		this.searchField.setTextColor( 0xFFFFFF );
 		this.searchField.setVisible( true );
+		searchField.setMessage(ButtonToolTips.SearchStringTooltip.getLocal());
 
 		if( this.viewCell || this instanceof GuiWirelessTerm )
 		{
@@ -315,8 +317,11 @@ public class GuiMEMonitorable extends AEBaseMEGui implements ISortSource, IConfi
 		final Enum setting = AEConfig.instance.settings.getSetting( Settings.SEARCH_MODE );
 		this.searchField.setFocused( SearchBoxMode.AUTOSEARCH == setting || SearchBoxMode.NEI_AUTOSEARCH == setting );
 
-		this.searchField.setText( memoryText );
-		this.repo.setSearchString( memoryText );
+		if (AEConfig.instance.preserveSearchBar || this.isSubGui())
+		{
+			this.searchField.setText(memoryText);
+			this.repo.setSearchString(memoryText);
+		}
 		if( this.isSubGui() )
 		{
 			this.repo.updateView();
@@ -550,5 +555,11 @@ public class GuiMEMonitorable extends AEBaseMEGui implements ISortSource, IConfi
 	void setStandardSize( final int standardSize )
 	{
 		this.standardSize = standardSize;
+	}
+	@Override
+	public void drawScreen( final int mouseX, final int mouseY, final float btn ) {
+		super.drawScreen(mouseX, mouseY, btn);
+		if (AEConfig.instance.preserveSearchBar)
+			handleTooltip(mouseX, mouseY, searchField);
 	}
 }
