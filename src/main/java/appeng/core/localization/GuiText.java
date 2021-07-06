@@ -100,6 +100,8 @@ public enum GuiText
 	// oredictionary filter GUI label
 	OreFilterLabel,
 
+	HoldShiftForTooltip,
+
 	// Used in a ME Interface when no appropriate TileEntity was detected near it
 	Nothing;
 

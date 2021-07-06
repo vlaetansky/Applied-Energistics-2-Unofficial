@@ -355,10 +355,20 @@ public class GuiCraftConfirm extends AEBaseGui
 				if( this.tooltip == z - viewStart )
 				{
 					dspToolTip = Platform.getItemDisplayName( is );
-
 					if( lineList.size() > 0 )
 					{
-						dspToolTip = dspToolTip + '\n' + Joiner.on( "\n" ).join( lineList );
+						if (isShiftKeyDown())
+						{
+							List l = is.getTooltip(this.mc.thePlayer, this.mc.gameSettings.advancedItemTooltips);
+							if (!l.isEmpty())
+								l.remove(0);
+							lineList.addAll(l);
+						}
+						else
+						{
+							lineList.add(GuiText.HoldShiftForTooltip.getLocal());
+						}
+						dspToolTip = dspToolTip +  '\n' + Joiner.on( "\n" ).join( lineList );
 					}
 
 					toolPosX = x * ( 1 + sectionLength ) + xo + sectionLength - 8;
