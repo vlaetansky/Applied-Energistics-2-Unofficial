@@ -236,7 +236,7 @@ gui.appliedenergistics2.SmallFontCraft=Craft
 gui.appliedenergistics2.LargeFontCraft=+
 gui.appliedenergistics2.Renamer=Custom Name: (Enter to set)
 gui.appliedenergistics2.OreFilterLabel=Ore dictionary filter
-gui.appliedenergistics2.HoldShiftForTooltip=Press shift for extended tooltip
+gui.appliedenergistics2.HoldShiftForTooltip=Hold shift for extended tooltip
 gui.appliedenergistics2.Nothing=Nothing
 
 # GUI Tooltips
