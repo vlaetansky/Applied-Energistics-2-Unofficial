@@ -357,11 +357,16 @@ public class GuiCraftConfirm extends AEBaseGui
 					dspToolTip = Platform.getItemDisplayName( is );
 					if( lineList.size() > 0 )
 					{
-						if (isShiftKeyDown()) {
+						if (isShiftKeyDown())
+						{
 							List l = is.getTooltip(this.mc.thePlayer, this.mc.gameSettings.advancedItemTooltips);
 							if (!l.isEmpty())
 								l.remove(0);
 							lineList.addAll(l);
+						}
+						else
+						{
+							lineList.add(GuiText.HoldShiftForTooltip.getLocal());
 						}
 						dspToolTip = dspToolTip +  '\n' + Joiner.on( "\n" ).join( lineList );
 					}
