@@ -31,7 +31,7 @@ import net.minecraft.client.gui.GuiTextField;
  * <p>
  * The rendering does pay attention to the size of the '_' caret.
  */
-public class MEGuiTextField extends GuiTextField implements ITooltip {
+public class MEGuiTextField extends GuiTextField {
 	private static final int PADDING = 2;
 	private String tooltip;
 
@@ -82,33 +82,39 @@ public class MEGuiTextField extends GuiTextField implements ITooltip {
 		return withinXRange && withinYRange;
 	}
 
-	@Override
-	public String getMessage() {
-		return tooltip;
-	}
-
-	public void setMessage(String tooltip)
+	public void setMessage(String t)
 	{
-		this.tooltip = tooltip;
+		tooltip = t;
 	}
 
-	@Override
-	public int xPos() {
-		return this._xPos;
-	}
+	public class TooltipProvider implements ITooltip
+	{
+		@Override
+		public String getMessage() {
+			return tooltip;
+		}
 
-	@Override
-	public int yPos() {
-		return this._yPos;
-	}
+		@Override
+		public int xPos() {
+			return _xPos;
+		}
 
-	@Override
-	public int getHeight() {
-		return 22;
-	}
+		@Override
+		public int yPos() {
+			return _yPos;
+		}
 
-	@Override
-	public boolean isVisible() {
-		return getVisible();
+		@Override
+		public int getHeight() {
+			return _height;
+		}
+
+		@Override
+		public int getWidth() { return _width; }
+
+		@Override
+		public boolean isVisible() {
+			return getVisible();
+		}
 	}
 }
