@@ -31,6 +31,7 @@ import appeng.container.slot.*;
 import appeng.container.slot.AppEngSlot.hasCalculatedValidness;
 import appeng.core.AELog;
 import appeng.core.AppEng;
+import appeng.core.localization.GuiText;
 import appeng.core.sync.network.NetworkHandler;
 import appeng.core.sync.packets.PacketInventoryAction;
 import appeng.core.sync.packets.PacketSwapSlots;
@@ -948,5 +949,20 @@ public abstract class AEBaseGui extends GuiContainer
 	public static final synchronized void setSwitchingGuis( final boolean switchingGuis )
 	{
 		AEBaseGui.switchingGuis = switchingGuis;
+	}
+	protected void addItemTooltip(ItemStack is, List<String> lineList)
+	{
+		if (isShiftKeyDown())
+		{
+			List l = is.getTooltip(this.mc.thePlayer, this.mc.gameSettings.advancedItemTooltips);
+			if (!l.isEmpty())
+				l.remove(0);
+			lineList.addAll(l);
+		}
+		else
+		{
+			lineList.add(GuiText.HoldShiftForTooltip.getLocal());
+		}
+
 	}
 }
