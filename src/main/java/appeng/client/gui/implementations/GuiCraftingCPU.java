@@ -310,6 +310,7 @@ public class GuiCraftingCPU extends AEBaseGui implements ISortSource
 
 					if( lineList.size() > 0 )
 					{
+						addItemTooltip(is, lineList);
 						dspToolTip = dspToolTip + '\n' + Joiner.on( "\n" ).join( lineList );
 					}
 
