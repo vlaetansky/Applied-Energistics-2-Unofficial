@@ -32,14 +32,15 @@ import appeng.api.parts.IPartCollisionHelper;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.IPartRenderHelper;
 import appeng.api.parts.PartItemStack;
-import appeng.api.util.AEColor;
 import appeng.client.texture.CableBusTextures;
 import appeng.core.AEConfig;
+import appeng.core.localization.PlayerMessages;
 import appeng.me.GridAccessException;
 import appeng.me.cache.P2PCache;
 import appeng.me.cache.helpers.TunnelCollection;
 import appeng.parts.PartBasicState;
 import appeng.util.Platform;
+import buildcraft.api.tools.IToolWrench;
 import com.google.common.base.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -49,8 +50,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.Vec3;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.*;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.ForgeEventFactory;
 
@@ -283,6 +284,10 @@ public abstract class PartP2PTunnel<T extends PartP2PTunnel> extends PartBasicSt
 			}
 			mc.notifyUser( player, MemoryCardMessages.INVALID_MACHINE );
 		}
+		else if( !player.isSneaking() && is != null && is.getItem() instanceof IToolWrench && !Platform.isClient())
+		{
+			printConnectionInfo(player);
+		}
 		else if( tt != null ) // attunement
 		{
 			ItemStack newType = null;
@@ -397,6 +402,44 @@ public abstract class PartP2PTunnel<T extends PartP2PTunnel> extends PartBasicSt
 		}
 
 		return false;
+	}
+
+	private void printConnectionInfo(EntityPlayer player)
+	{
+		if (isOutput())
+		{
+			PartP2PTunnel input = getInput();
+			if (input == null)
+				player.addChatMessage(PlayerMessages.TunnelNotConnected.get());
+			else
+			{
+				TileEntity t = input.getTile();
+				player.addChatMessage(new ChatComponentTranslation( PlayerMessages.TunnelInputIsAt.getName(), t.xCoord,t.yCoord,t.zCoord));
+			}
+		}
+		else
+		{
+			try
+			{
+				TunnelCollection<T> oo = getOutputs();
+				if (oo.isEmpty())
+					player.addChatMessage(PlayerMessages.TunnelHasNoOutputs.get());
+				else
+				{
+					player.addChatMessage(PlayerMessages.TunnelOutputsAreAt.get());
+					for (PartP2PTunnel t : oo)
+					{
+						TileEntity te = t.getTile();
+						if (te != null)
+							player.addChatMessage(new ChatComponentText("(" + te.xCoord + ", " + te.yCoord + ", " + te.zCoord + ")"));
+					}
+				}
+			}
+			catch (GridAccessException ignored)
+			{
+				player.addChatMessage(PlayerMessages.TunnelNotConnected.get());
+			}
+		}
 	}
 
 	@Override
