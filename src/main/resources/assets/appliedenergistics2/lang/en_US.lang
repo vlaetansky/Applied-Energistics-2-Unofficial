@@ -87,7 +87,10 @@ chat.appliedenergistics2.SavedSettings=Successfully saved settings.
 chat.appliedenergistics2.AmmoDepleted=Ammo Depleted.
 chat.appliedenergistics2.isNowLocked=Monitor is now Locked.
 chat.appliedenergistics2.isNowUnlocked=Monitor is now Unlocked.
-
+chat.appliedenergistics2.TunnelNotConnected=Tunnel is not connected.
+chat.appliedenergistics2.TunnelInputIsAt=Tunnel input is at (%d, %d, %d)
+chat.appliedenergistics2.TunnelHasNoOutputs=Tunnel has no outputs.
+chat.appliedenergistics2.TunnelOutputsAreAt=Tunnel outputs are at:
 # Creative Tabs
 itemGroup.appliedenergistics2=Applied Energistics 2
 itemGroup.appliedenergistics2.facades=Applied Energistics 2 - Facades
