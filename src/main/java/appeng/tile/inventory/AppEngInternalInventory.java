@@ -151,9 +151,9 @@ public class AppEngInternalInventory implements IInventory, Iterable<ItemStack>
 			}
 
 			this.getTileEntity().onChangeInventory( this, slot, InvOperation.setInventorySlotContents, removed, added );
-
-			this.markDirty();
 		}
+
+		this.markDirty();
 	}
 
 	@Override
