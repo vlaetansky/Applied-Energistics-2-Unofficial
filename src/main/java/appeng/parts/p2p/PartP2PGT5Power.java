@@ -79,7 +79,7 @@ public class PartP2PGT5Power extends PartP2PTunnel<PartP2PGT5Power> implements I
     }
 
     public long injectEnergyUnits(long voltage, long amperage) {
-        if (!this.isOutput() && this.isActive() && voltage > 0L && amperage > 0L) {
+        if (!this.isOutput() && voltage > 0L && amperage > 0L) {
             long amperesUsed = 0;
             long amperes = amperage;
             long outvoltage = (long) (voltage * (1 - AEConfig.TUNNEL_POWER_LOSS));
