@@ -27,6 +27,7 @@ public class GuiPatternTermEx extends GuiMEMonitorable {
     private GuiImgButton encodeBtn;
     private GuiImgButton clearBtn;
     private GuiImgButton invertBtn;
+    private GuiImgButton doubleBtn;
     private boolean containerSynchronized = false;
 
     public GuiPatternTermEx(final InventoryPlayer inventoryPlayer, final ITerminalHost te )
@@ -47,21 +48,22 @@ public class GuiPatternTermEx extends GuiMEMonitorable {
             {
                 NetworkHandler.instance.sendToServer( new PacketValueConfig( "PatternTerminalEx.Encode", "1" ) );
             }
-
-            if( this.clearBtn == btn )
+            else if( this.clearBtn == btn )
             {
                 NetworkHandler.instance.sendToServer( new PacketValueConfig( "PatternTerminalEx.Clear", "1" ) );
             }
-
-            if( this.invertBtn == btn )
+            else if( this.invertBtn == btn )
             {
                 NetworkHandler.instance.sendToServer( new PacketValueConfig( "PatternTerminalEx.Invert", container.inverted ? "0" : "1") );
                 updateButtons(!container.inverted);
             }
-
-            if( this.substitutionsEnabledBtn == btn || this.substitutionsDisabledBtn == btn )
+            else if( this.substitutionsEnabledBtn == btn || this.substitutionsDisabledBtn == btn )
             {
                 NetworkHandler.instance.sendToServer( new PacketValueConfig( "PatternTerminalEx.Substitute", this.substitutionsEnabledBtn == btn ? SUBSITUTION_DISABLE : SUBSITUTION_ENABLE ) );
+            }
+            else if (doubleBtn == btn)
+            {
+                NetworkHandler.instance.sendToServer( new PacketValueConfig( "PatternTerminalEx.Double",  "") );
             }
         }
         catch( final IOException e )
@@ -91,11 +93,14 @@ public class GuiPatternTermEx extends GuiMEMonitorable {
         this.encodeBtn = new GuiImgButton( this.guiLeft + 147, this.guiTop + this.ySize - 142, Settings.ACTIONS, ActionItems.ENCODE );
         this.buttonList.add( this.encodeBtn );
 
-        invertBtn = new GuiImgButton( this.guiLeft + 87, this.guiTop + this.ySize - 155, Settings.ACTIONS,
+        invertBtn = new GuiImgButton( this.guiLeft + 87, this.guiTop + this.ySize - 153, Settings.ACTIONS,
                 container.inverted ? PatternSlotConfig.C_4_16 : PatternSlotConfig.C_16_4);
         invertBtn.setHalfSize( true );
         this.buttonList.add( this.invertBtn );
 
+        this.doubleBtn = new GuiImgButton( this.guiLeft + 97, this.guiTop + this.ySize - 153, Settings.ACTIONS, ActionItems.DOUBLE );
+        this.doubleBtn.setHalfSize( true );
+        this.buttonList.add( this.doubleBtn );
     }
 
     private void updateButtons(boolean val) {
@@ -104,6 +109,7 @@ public class GuiPatternTermEx extends GuiMEMonitorable {
         substitutionsDisabledBtn.xPosition += offset;
         clearBtn.xPosition += offset;
         invertBtn.xPosition += offset;
+        doubleBtn.xPosition += offset;
     }
 
     @Override

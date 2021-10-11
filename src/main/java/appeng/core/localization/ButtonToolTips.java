@@ -64,7 +64,7 @@ public enum ButtonToolTips
 	// Used in the tooltips of the items in the terminal, when moused over
 	ItemsStored, ItemsRequestable, P2PFrequency, SearchStringTooltip,
 
-	SchedulingMode, SchedulingModeDefault, SchedulingModeRoundRobin, SchedulingModeRandom, OreFilter, OreFilterHint,
+	SchedulingMode, SchedulingModeDefault, SchedulingModeRoundRobin, SchedulingModeRandom, OreFilter, OreFilterHint, DoublePattern, DoublePatternHint,
 
 	SaveSearchString, SaveSearchStringYes, SaveSearchStringNo;
 

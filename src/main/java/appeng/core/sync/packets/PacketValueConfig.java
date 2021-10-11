@@ -156,6 +156,10 @@ public class PacketValueConfig extends AppEngPacket
 			{
 				cpt.getPatternTerminal().setSubstitution( this.Value.equals( "1" ) );
 			}
+			else if( this.Name.equals( "PatternTerminal.Double" ) )
+			{
+				cpt.doubleStacks();
+			}
 		}
 		else if( this.Name.startsWith( "PatternTerminalEx." ) && c instanceof ContainerPatternTermEx )
 		{
@@ -175,6 +179,10 @@ public class PacketValueConfig extends AppEngPacket
 			else if( this.Name.equals( "PatternTerminalEx.Invert" ) )
 			{
 				cpt.getPatternTerminal().setInverted( Value.equals( "1" ) );
+			}
+			else if( this.Name.equals( "PatternTerminalEx.Double" ) )
+			{
+				cpt.doubleStacks();
 			}
 		}
 		else if( this.Name.startsWith( "StorageBus." ) && c instanceof ContainerStorageBus )

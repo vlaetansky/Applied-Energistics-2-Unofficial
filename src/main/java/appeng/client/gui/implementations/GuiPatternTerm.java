@@ -55,6 +55,7 @@ public class GuiPatternTerm extends GuiMEMonitorable
 	private GuiImgButton substitutionsDisabledBtn;
 	private GuiImgButton encodeBtn;
 	private GuiImgButton clearBtn;
+	private GuiImgButton doubleBtn;
 
 	public GuiPatternTerm( final InventoryPlayer inventoryPlayer, final ITerminalHost te )
 	{
@@ -70,25 +71,25 @@ public class GuiPatternTerm extends GuiMEMonitorable
 
 		try
 		{
-
 			if( this.tabCraftButton == btn || this.tabProcessButton == btn )
 			{
 				NetworkHandler.instance.sendToServer( new PacketValueConfig( "PatternTerminal.CraftMode", this.tabProcessButton == btn ? CRAFTMODE_CRFTING : CRAFTMODE_PROCESSING ) );
 			}
-
-			if( this.encodeBtn == btn )
+			else if( this.encodeBtn == btn )
 			{
 				NetworkHandler.instance.sendToServer( new PacketValueConfig( "PatternTerminal.Encode", "1" ) );
 			}
-
-			if( this.clearBtn == btn )
+			else if( this.clearBtn == btn )
 			{
 				NetworkHandler.instance.sendToServer( new PacketValueConfig( "PatternTerminal.Clear", "1" ) );
 			}
-
-			if( this.substitutionsEnabledBtn == btn || this.substitutionsDisabledBtn == btn )
+			else if( this.substitutionsEnabledBtn == btn || this.substitutionsDisabledBtn == btn )
 			{
 				NetworkHandler.instance.sendToServer( new PacketValueConfig( "PatternTerminal.Substitute", this.substitutionsEnabledBtn == btn ? SUBSITUTION_DISABLE : SUBSITUTION_ENABLE ) );
+			}
+			else if (doubleBtn == btn)
+			{
+				NetworkHandler.instance.sendToServer( new PacketValueConfig( "PatternTerminal.Double",  "") );
 			}
 		}
 		catch( final IOException e )
@@ -122,6 +123,10 @@ public class GuiPatternTerm extends GuiMEMonitorable
 
 		this.encodeBtn = new GuiImgButton( this.guiLeft + 147, this.guiTop + this.ySize - 142, Settings.ACTIONS, ActionItems.ENCODE );
 		this.buttonList.add( this.encodeBtn );
+
+		this.doubleBtn = new GuiImgButton( this.guiLeft + 74, this.guiTop + this.ySize - 153, Settings.ACTIONS, ActionItems.DOUBLE );
+		this.doubleBtn.setHalfSize( true );
+		this.buttonList.add( this.doubleBtn );
 	}
 
 	@Override
@@ -131,11 +136,13 @@ public class GuiPatternTerm extends GuiMEMonitorable
 		{
 			this.tabCraftButton.visible = false;
 			this.tabProcessButton.visible = true;
+			this.doubleBtn.visible = true;
 		}
 		else
 		{
 			this.tabCraftButton.visible = true;
 			this.tabProcessButton.visible = false;
+			this.doubleBtn.visible = false;
 		}
 
 		if( this.container.substitute )
