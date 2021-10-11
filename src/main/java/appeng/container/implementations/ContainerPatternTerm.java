@@ -552,4 +552,48 @@ public class ContainerPatternTerm extends ContainerMEMonitorable implements IAEA
 	{
 		this.substitute = substitute;
 	}
+
+	boolean canDoubleStacks()
+	{
+		for (final Slot s : this.craftingSlots)
+		{
+			final ItemStack st =  s.getStack();
+			if (st != null && (st.stackSize*2 > 127))
+				return false;
+		}
+
+		for (final Slot s : this.outputSlots)
+		{
+			final ItemStack st =  s.getStack();
+			if (st != null && (st.stackSize*2 > 127))
+				return false;
+		}
+		return true;
+	}
+
+	public void doubleStacks()
+	{
+		if (!isCraftingMode() && canDoubleStacks())
+		{
+			for (final Slot s : this.craftingSlots)
+			{
+				ItemStack st = s.getStack();
+				if (st == null)
+					continue;
+				st.stackSize *= 2;
+				s.putStack(st);
+			}
+
+			for (final Slot s : this.outputSlots)
+			{
+				ItemStack st = s.getStack();
+				if (st == null)
+					continue;
+				st.stackSize *= 2;
+				s.putStack(st);
+			}
+
+			this.detectAndSendChanges();
+		}
+	}
 }

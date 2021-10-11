@@ -4,13 +4,18 @@ import appeng.api.AEApi;
 import appeng.api.definitions.IDefinitions;
 import appeng.api.storage.ITerminalHost;
 import appeng.container.guisync.GuiSync;
-import appeng.container.slot.*;
+import appeng.container.slot.IOptionalSlotHost;
+import appeng.container.slot.OptionalSlotFake;
+import appeng.container.slot.SlotFakeCraftingMatrix;
+import appeng.container.slot.SlotRestrictedInput;
 import appeng.helpers.IContainerCraftingPacket;
 import appeng.parts.reporting.PartPatternTerminalEx;
 import appeng.util.Platform;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.*;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -320,5 +325,49 @@ public class ContainerPatternTermEx extends ContainerMEMonitorable implements IO
     public void setSubstitute( final boolean substitute )
     {
         this.substitute = substitute;
+    }
+
+    boolean canDoubleStacks()
+    {
+        for (final Slot s : this.craftingSlots)
+        {
+            final ItemStack st =  s.getStack();
+            if (st != null && (st.stackSize*2 > 127))
+                return false;
+        }
+
+        for (final Slot s : this.outputSlots)
+        {
+            final ItemStack st =  s.getStack();
+            if (st != null && (st.stackSize*2 > 127))
+                return false;
+        }
+        return true;
+    }
+
+    public void doubleStacks()
+    {
+        if (canDoubleStacks())
+        {
+            for (final Slot s : this.craftingSlots)
+            {
+                ItemStack st = s.getStack();
+                if (st == null)
+                    continue;
+                st.stackSize *= 2;
+                s.putStack(st);
+            }
+
+            for (final Slot s : this.outputSlots)
+            {
+                ItemStack st = s.getStack();
+                if (st == null)
+                    continue;
+                st.stackSize *= 2;
+                s.putStack(st);
+            }
+
+            this.detectAndSendChanges();
+        }
     }
 }
