@@ -152,6 +152,12 @@ public class DualityInterface
 	@Override
 	public void onChangeInventory( final IInventory inv, final int slot, final InvOperation mc, final ItemStack removed, final ItemStack added )
 	{
+		if (mc == InvOperation.markDirty)
+		{
+			TileEntity te = getHost().getTile();
+			te.getWorldObj().markTileEntityChunkModified( te.xCoord, te.yCoord, te.zCoord, te );
+		}
+
 		if( this.isWorking )
 		{
 			return;
