@@ -164,15 +164,15 @@ public class PartP2PLiquids extends PartP2PTunnel<PartP2PLiquids> implements IFl
 			final IFluidHandler tank = l.getTarget();
 			if( tank != null )
 			{
-				l.tmpUsed = tank.fill( l.getSide().getOpposite(), insert.copy(), true );
+				l.tmpUsed = tank.fill( l.getSide().getOpposite(), insert, true );
 			}
 			else
 			{
 				l.tmpUsed = 0;
 			}
 
-			available -= insert.amount;
-			used += insert.amount;
+			available -= l.tmpUsed;
+			used += l.tmpUsed;
 		}
 
 		if( stack.pop() != this )
