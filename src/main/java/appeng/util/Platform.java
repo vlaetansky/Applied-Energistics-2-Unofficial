@@ -1944,6 +1944,11 @@ public class Platform
 			{
 				return stack;
 			}
+
+			if( parts.cableDenseCovered().sameAs( AEColor.Transparent, stack ) )
+			{
+				return stack;
+			}
 		}
 
 		return is;

@@ -42,6 +42,8 @@ public class Parts
 
 	public AEColoredItemDefinition partCableDense;
 
+	public AEColoredItemDefinition partCableDenseCovered;
+
 	public AEColoredItemDefinition partLumenCableSmart;
 
 	public AEColoredItemDefinition partLumenCableCovered;

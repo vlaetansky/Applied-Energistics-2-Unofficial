@@ -51,4 +51,9 @@ public enum AECableType
 	 */
 	DENSE,
 
+	/**
+	 * Dense Covered Cable, represents a tier 2 block that can carry 32 channels that should render as covered.
+	 */
+	DENSE_COVERED,
+
 }

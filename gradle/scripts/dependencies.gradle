@@ -129,13 +129,14 @@ dependencies {
 
     // I will not run minecraft with those mods. I don't know why......
     compileOnly "codechicken:ForgeMultipart:${minecraft_version}-${fmp_version}:dev"
-    compileOnly "codechicken:CodeChickenLib:${minecraft_version}-${code_chicken_lib_version}:dev"
-    compileOnly "codechicken:CodeChickenCore:${minecraft_version}-${code_chicken_core_version}:dev"
-    compileOnly "codechicken:NotEnoughItems:${minecraft_version}-${nei_version}:dev"
+    compile "codechicken:CodeChickenLib:${minecraft_version}-${code_chicken_lib_version}:dev"
+    compile "codechicken:CodeChickenCore:${minecraft_version}-${code_chicken_core_version}:dev"
+    compile "codechicken:NotEnoughItems:${minecraft_version}-${nei_version}:dev"
     compileOnly "com.gregoriust.gregtech:gregtech:${gt_version}:dev"
 	
 
-    compile files("lib/CoFHLib-[1.7.10]1.2.1-185-dev.jar") 
+    compile files("lib/CoFHLib-[1.7.10]1.2.1-185-dev.jar")
+    runtimeOnly files("lib/CoFHCore-[1.7.10]3.1.4-329-dev.jar")
     compile files("lib/buildcraft-${bc_version}-dev.jar")
     compile files("lib/PneumaticCraft-${minecraft_version}-${pneumaticcraft_version}-api.jar")
 
@@ -148,7 +149,7 @@ dependencies {
     compile "appeng:Waila:${waila_version}_${minecraft_version}:api"
 //    compile "appeng:RotaryCraft:${rotarycraft_version}:api"
 //    compile "appeng:mekanism:${minecraft_version}-${mekansim_version}:api"
-    compile files("lib/InventoryTweaks-deobf-1.58-147.jar")
+    compileOnly files("lib/InventoryTweaks-deobf-1.58-147.jar")
 //    compile "appeng:InventoryTweaks:${invtweaks_version}:api"
 
     // self compiled stubs

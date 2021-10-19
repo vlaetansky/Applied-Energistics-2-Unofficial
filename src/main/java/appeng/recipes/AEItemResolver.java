@@ -100,6 +100,16 @@ public class AEItemResolver implements ISubItemResolver
 				return this.cableItem( parts.cableDense(), itemName.substring( itemName.indexOf( '.' ) + 1 ) );
 			}
 
+			if( itemName.equals( "CableDenseCovered" ) )
+			{
+				return new ResolverResultSet( "CableDenseCovered", parts.cableDenseCovered().allStacks( 1 ) );
+			}
+
+			if( itemName.startsWith( "CableDenseCovered." ) )
+			{
+				return this.cableItem( parts.cableDenseCovered(), itemName.substring( itemName.indexOf( '.' ) + 1 ) );
+			}
+
 			if( itemName.startsWith( "ItemCrystalSeed." ) )
 			{
 				if( itemName.equalsIgnoreCase( "ItemCrystalSeed.Certus" ) )

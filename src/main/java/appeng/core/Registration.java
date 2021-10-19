@@ -318,6 +318,7 @@ public final class Registration
 		target.partCableCovered = source.cableCovered();
 		target.partCableGlass = source.cableGlass();
 		target.partCableDense = source.cableDense();
+		target.partCableDenseCovered = source.cableDenseCovered();
 		// target.partLumenCableSmart = source.lumenCableSmart();
 		// target.partLumenCableCovered = source.lumenCableCovered();
 		// target.partLumenCableGlass = source.lumenCableGlass();
