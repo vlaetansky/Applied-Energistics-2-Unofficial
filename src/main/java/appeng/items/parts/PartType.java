@@ -75,6 +75,18 @@ public enum PartType
 				}
 			},
 
+	/*
+		Registered the less frametime laggy cables here
+	 */
+	CableDenseCovered( 520, EnumSet.of( AEFeature.Channels ), EnumSet.noneOf( IntegrationType.class ), PartDenseCableCovered.class )
+			{
+				@Override
+				public boolean isCable()
+				{
+					return true;
+				}
+			},
+
 	ToggleBus( 80, EnumSet.of( AEFeature.Core ), EnumSet.noneOf( IntegrationType.class ), PartToggleBus.class ),
 
 	InvertedToggleBus( 100, EnumSet.of( AEFeature.Core ), EnumSet.noneOf( IntegrationType.class ), PartInvertedToggleBus.class ),
