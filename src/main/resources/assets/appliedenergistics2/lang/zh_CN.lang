@@ -343,6 +343,7 @@ gui.tooltips.appliedenergistics2.SaveSearchStringYes=是
 gui.tooltips.appliedenergistics2.SaveSearchStringNo=否
 gui.tooltips.appliedenergistics2.DoublePattern=双倍样板
 gui.tooltips.appliedenergistics2.DoublePatternHint=样板输入/输出物品堆叠同时x2
+gui.tooltips.appliedenergistics2.CraftingStatus=合成情况
 
 # Units
 gui.appliedenergistics2.units.appliedenergstics=AE
