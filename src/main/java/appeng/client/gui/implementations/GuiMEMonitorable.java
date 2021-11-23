@@ -332,8 +332,7 @@ public class GuiMEMonitorable extends AEBaseMEGui implements ISortSource, IConfi
 
 		if (AEConfig.instance.preserveSearchBar || this.isSubGui())
 		{
-			this.searchField.setText(memoryText);
-			this.repo.setSearchString(memoryText);
+			setSearchString(memoryText, false);
 		}
 		if( this.isSubGui() )
 		{
@@ -369,6 +368,17 @@ public class GuiMEMonitorable extends AEBaseMEGui implements ISortSource, IConfi
 		craftingGridOffsetY -= 6;
 	}
 
+	public void setSearchString(String memoryText, boolean updateView)
+	{
+		this.searchField.setText(memoryText);
+		this.repo.setSearchString(memoryText);
+		if (updateView)
+		{
+			this.repo.updateView();
+			this.setScrollBar();
+		}
+	}
+
 	@Override
 	public void drawFG( final int offsetX, final int offsetY, final int mouseX, final int mouseY )
 	{
@@ -388,10 +398,7 @@ public class GuiMEMonitorable extends AEBaseMEGui implements ISortSource, IConfi
 
 		if( btn == 1 && this.searchField.isMouseIn( xCoord, yCoord ) )
 		{
-			this.searchField.setText( "" );
-			this.repo.setSearchString( "" );
-			this.repo.updateView();
-			this.setScrollBar();
+			setSearchString("", true);
 		}
 
 		super.mouseClicked( xCoord, yCoord, btn );
@@ -574,5 +581,9 @@ public class GuiMEMonitorable extends AEBaseMEGui implements ISortSource, IConfi
 		super.drawScreen(mouseX, mouseY, btn);
 		if (AEConfig.instance.preserveSearchBar && searchField != null)
 			handleTooltip(mouseX, mouseY, searchField.new TooltipProvider());
+	}
+	public boolean isOverSearchField(int x, int y)
+	{
+		return searchField.isMouseIn(x,y);
 	}
 }
