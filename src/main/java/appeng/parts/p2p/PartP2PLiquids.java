@@ -41,7 +41,7 @@ import java.util.Stack;
 public class PartP2PLiquids extends PartP2PTunnel<PartP2PLiquids> implements IFluidHandler
 {
 
-	private static final ThreadLocal<Stack<PartP2PLiquids>> DEPTH = new ThreadLocal<Stack<PartP2PLiquids>>();
+	private static final ThreadLocal<Stack<PartP2PLiquids>> DEPTH = new ThreadLocal<>();
 	private static final FluidTankInfo[] ACTIVE_TANK = { new FluidTankInfo( null, 10000 ) };
 	private static final FluidTankInfo[] INACTIVE_TANK = { new FluidTankInfo( null, 0 ) };
 	private IFluidHandler cachedTank;
@@ -50,11 +50,6 @@ public class PartP2PLiquids extends PartP2PTunnel<PartP2PLiquids> implements IFl
 	public PartP2PLiquids( final ItemStack is )
 	{
 		super( is );
-	}
-
-	public float getPowerDrainPerTick()
-	{
-		return 2.0f;
 	}
 
 	@Override
@@ -87,6 +82,9 @@ public class PartP2PLiquids extends PartP2PTunnel<PartP2PLiquids> implements IFl
 	@Override
 	public int fill( final ForgeDirection from, final FluidStack resource, final boolean doFill )
 	{
+		if  (resource == null || resource.getFluid() == null)
+			return 0;
+
 		final Stack<PartP2PLiquids> stack = this.getDepth();
 
 		for( final PartP2PLiquids t : stack )
@@ -195,7 +193,7 @@ public class PartP2PLiquids extends PartP2PTunnel<PartP2PLiquids> implements IFl
 
 		if( s == null )
 		{
-			DEPTH.set( s = new Stack<PartP2PLiquids>() );
+			DEPTH.set( s = new Stack<>() );
 		}
 
 		return s;
@@ -203,8 +201,9 @@ public class PartP2PLiquids extends PartP2PTunnel<PartP2PLiquids> implements IFl
 
 	private List<PartP2PLiquids> getOutputs( final Fluid input )
 	{
-		final List<PartP2PLiquids> outs = new LinkedList<PartP2PLiquids>();
-
+		final List<PartP2PLiquids> outs = new LinkedList<>();
+		if (input == null)
+			return outs;
 		try
 		{
 			for( final PartP2PLiquids l : this.getOutputs() )
@@ -265,7 +264,7 @@ public class PartP2PLiquids extends PartP2PTunnel<PartP2PLiquids> implements IFl
 	private boolean inputAcceptsFluid(Fluid input)
 	{
 		PartP2PLiquids l = getInput();
-		if (l == null || l == this)
+		if (l == null || l == this || input == null)
 			return false;
 		final IFluidHandler handler = l.getTarget();
 		return handler != null && handler.canFill(l.getSide().getOpposite(), input);
