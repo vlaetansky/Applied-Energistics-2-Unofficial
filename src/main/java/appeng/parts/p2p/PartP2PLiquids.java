@@ -98,7 +98,10 @@ public class PartP2PLiquids extends PartP2PTunnel<PartP2PLiquids> implements IFl
 		stack.push( this );
 
 		final List<PartP2PLiquids> list = this.getOutputs( resource.getFluid() );
-		list.add(getInput());
+		PartP2PLiquids input = getInput();
+			if (input != null) {
+  			list.add(input);
+		}
 
 		int requestTotal = 0;
 
