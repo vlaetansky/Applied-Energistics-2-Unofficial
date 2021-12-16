@@ -33,10 +33,10 @@ public class JabbaBarrel implements IMEInventory<IAEItemStack> {
                 }
 
                 storedItems += input.getStackSize();
-                if( storedItems > max )
+                if( storedItems > max && !barrel.getStorage().isVoid() )
                 {
                     final IAEItemStack overflow = AEItemStack.create( is );
-                    overflow.setStackSize( (int) ( storedItems - max ) );
+                    overflow.setStackSize( storedItems - max );
                     if( mode == Actionable.MODULATE )
                     {
                         this.barrel.setStoredItemCount( (int) max );
@@ -59,9 +59,23 @@ public class JabbaBarrel implements IMEInventory<IAEItemStack> {
             {
                 return input;
             }
-            if( mode == Actionable.MODULATE )
+            long max = this.barrel.getMaxStoredCount();
+            if( input.getStackSize() <= max || barrel.getStorage().isVoid() )
             {
-                this.barrel.setStoredItemType( input.getItemStack(), (int) input.getStackSize() );
+                if( mode == Actionable.MODULATE )
+                {
+                    this.barrel.setStoredItemType( input.getItemStack(), (int) input.getStackSize() );
+                }
+            }
+            else
+            {
+                final IAEItemStack overflow = AEItemStack.create(input.getItemStack());
+                overflow.setStackSize(input.getStackSize() - max);
+                if( mode == Actionable.MODULATE )
+                {
+                    this.barrel.setStoredItemType( input.getItemStack(), (int) max );
+                }
+                return overflow;
             }
             return null;
         }
