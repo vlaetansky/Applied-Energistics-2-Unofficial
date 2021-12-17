@@ -59,7 +59,7 @@ public class JabbaBarrel implements IMEInventory<IAEItemStack> {
             {
                 return input;
             }
-            long max = this.barrel.getMaxStoredCount();
+            long max = ((long)this.barrel.getStorage().getMaxStacks()) * input.getItemStack().getMaxStackSize();
             if( input.getStackSize() <= max || barrel.getStorage().isVoid() )
             {
                 if( mode == Actionable.MODULATE )
