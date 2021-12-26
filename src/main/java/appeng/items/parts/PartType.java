@@ -75,10 +75,24 @@ public enum PartType
 				}
 			},
 
-	/*
-		Registered the less frametime laggy cables here
-	 */
 	CableDenseCovered( 520, EnumSet.of( AEFeature.Channels ), EnumSet.noneOf( IntegrationType.class ), PartDenseCableCovered.class )
+			{
+				@Override
+				public boolean isCable()
+				{
+					return true;
+				}
+			},
+
+	CableUltraDenseCovered( 540, EnumSet.of( AEFeature.Channels ), EnumSet.noneOf( IntegrationType.class ), PartUltraDenseCovered.class )
+			{
+				@Override
+				public boolean isCable()
+				{
+					return true;
+				}
+			},
+	CableUltraDenseSmart( 560, EnumSet.of( AEFeature.Channels ), EnumSet.noneOf( IntegrationType.class ), PartUltraDenseSmart.class )
 			{
 				@Override
 				public boolean isCable()
