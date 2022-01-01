@@ -66,7 +66,7 @@ public class OreHelper
 			final Collection<Integer> ores = ref.getOres();
 			final Collection<String> set = ref.getEquivalents();
 
-			for( int id : OreDictionary.getOreIDs(itemStack) )
+			for( final int id : OreDictionary.getOreIDs(itemStack) )
 			{
 				ores.add(id);
 				set.add(OreDictionary.getOreName(id));
@@ -115,7 +115,7 @@ public class OreHelper
 		final OreReference a = aeItemStack.getDefinition().getIsOre();
 
 		HashSet<Integer> set = new HashSet<>();
-		for( int id : OreDictionary.getOreIDs(o) )
+		for( final int id : OreDictionary.getOreIDs(o) )
 		{
 			set.add(id);
 		}
