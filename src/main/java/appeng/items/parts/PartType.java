@@ -84,7 +84,7 @@ public enum PartType
 				}
 			},
 
-	CableUltraDenseCovered( 540, EnumSet.of( AEFeature.Channels ), EnumSet.noneOf( IntegrationType.class ), PartUltraDenseCovered.class )
+	CableUltraDenseCovered( 540, EnumSet.of( AEFeature.Channels ), EnumSet.noneOf( IntegrationType.class ), PartUltraDenseCableCovered.class )
 			{
 				@Override
 				public boolean isCable()
@@ -92,7 +92,7 @@ public enum PartType
 					return true;
 				}
 			},
-	CableUltraDenseSmart( 560, EnumSet.of( AEFeature.Channels ), EnumSet.noneOf( IntegrationType.class ), PartUltraDenseSmart.class )
+	CableUltraDenseSmart( 560, EnumSet.of( AEFeature.Channels ), EnumSet.noneOf( IntegrationType.class ), PartUltraDenseCableSmart.class )
 			{
 				@Override
 				public boolean isCable()
