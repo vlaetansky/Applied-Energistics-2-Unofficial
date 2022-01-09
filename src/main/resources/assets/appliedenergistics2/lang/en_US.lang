@@ -531,6 +531,11 @@ commands.ae2.ChunkLogger=Toggles Chunk Loading and unloading to the server log. 
 commands.ae2.ChunkLoggerOn=Chunk Logging is now on
 commands.ae2.ChunkLoggerOff=Chunk Logging is now off
 commands.ae2.Supporters=Displays a list of AE2 Supporters
+commands.ae2.Profiler=Grid profiling command, pass <x y z> of some tile on the grid to start/stop profiling
+commands.ae2.ProfilerStart=Profiling started
+commands.ae2.ProfilerFailed=No AE tile here
+commands.ae2.ProfilerGridDown=This grid is offline
+commands.ae2.ProfilerStop=Average nanoseconds taken by this grid per tick:
 
 # Achievements
 achievement.ae2.Compass=Meteorite Hunter
