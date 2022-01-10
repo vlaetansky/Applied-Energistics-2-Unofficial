@@ -27,7 +27,7 @@ public enum Commands
 {
 	Chunklogger( 4, new ChunkLogger() ),
 	Supporters( 0, new Supporters() ),
-	profile(4, new Profile() );
+	profile(2, new Profile() );
 
 	public final int level;
 	public final ISubCommand command;

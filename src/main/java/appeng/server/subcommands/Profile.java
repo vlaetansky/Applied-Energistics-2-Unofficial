@@ -10,6 +10,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class Profile implements ISubCommand {
@@ -27,7 +28,21 @@ public class Profile implements ISubCommand {
             int x = Integer.decode(args[1]);
             int y = Integer.decode(args[2]);
             int z = Integer.decode(args[3]);
-            TileEntity tile = sender.getEntityWorld().getTileEntity(x,y,z);
+            TileEntity tile;
+            if (args.length > 4)
+            {
+                int dim = Integer.decode(args[4]);
+                WorldServer ws = srv.worldServerForDimension(dim);
+                if (ws == null)
+                {
+                    sender.addChatMessage( new ChatComponentTranslation("commands.ae2.ProfilerFailedDim"));
+                    return;
+                }
+                tile = ws.getTileEntity(x,y,z);
+            }
+            else
+                tile = sender.getEntityWorld().getTileEntity(x,y,z);
+
             if (!(tile instanceof IGridHost) || ((IGridHost)tile).getGridNode(ForgeDirection.UNKNOWN) == null)
             {
                 sender.addChatMessage( new ChatComponentTranslation("commands.ae2.ProfilerFailed"));
