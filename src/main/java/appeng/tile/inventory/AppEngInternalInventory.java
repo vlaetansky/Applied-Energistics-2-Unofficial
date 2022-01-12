@@ -49,6 +49,14 @@ public class AppEngInternalInventory implements IInventory, Iterable<ItemStack>
 		this.inv = new ItemStack[size];
 	}
 
+	public AppEngInternalInventory( final IAEAppEngInventory inventory, final int size, final int maxstack )
+	{
+		this.setTileEntity( inventory );
+		this.size = size;
+		this.maxStack = maxstack;
+		this.inv = new ItemStack[size];
+	}
+
 	public IMEInventory getMEInventory()
 	{
 		return new MEIInventoryWrapper( this, null );

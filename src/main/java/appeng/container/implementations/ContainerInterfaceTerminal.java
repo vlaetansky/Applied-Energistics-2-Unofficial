@@ -74,7 +74,7 @@ public final class ContainerInterfaceTerminal extends AEBaseContainer {
             this.grid = anchor.getActionableNode().getGrid();
         }
 
-        this.bindPlayerInventory(ip, 0, 222 - /* height of player inventory */82);
+        this.bindPlayerInventory(ip, 14, 256 - /* height of player inventory */82);
     }
 
     @Override
@@ -147,27 +147,42 @@ public final class ContainerInterfaceTerminal extends AEBaseContainer {
             final IInventory theSlot = slotInv.getWrapper(slot + inv.offset);
             final InventoryAdaptor interfaceSlot = new AdaptorIInventory(theSlot);
 
+            IInventory interfaceHandler = inv.server;
+            boolean canInsert = true;
+
             switch (action) {
                 case PICKUP_OR_SET_DOWN:
 
-                    if (hasItemInHand) {
-                        ItemStack inSlot = theSlot.getStackInSlot(0);
-                        if (inSlot == null) {
-                            player.inventory.setItemStack(interfaceSlot.addItems(player.inventory.getItemStack()));
-                        } else {
-                            inSlot = inSlot.copy();
-                            final ItemStack inHand = player.inventory.getItemStack().copy();
-
-                            theSlot.setInventorySlotContents(0, null);
-                            player.inventory.setItemStack(null);
-
-                            player.inventory.setItemStack(interfaceSlot.addItems(inHand.copy()));
-
-                            if (player.inventory.getItemStack() == null) {
-                                player.inventory.setItemStack(inSlot);
+                    if (hasItemInHand)
+                    {
+                        for( int s = 0; s < interfaceHandler.getSizeInventory(); s++ )
+                        {
+                            if( Platform.isSameItem( interfaceHandler.getStackInSlot( s ), player.inventory.getItemStack() ) )
+                            {
+                                canInsert = false;
+                                break;
+                            }
+                        }
+                        if( canInsert )
+                        {
+                            ItemStack inSlot = theSlot.getStackInSlot(0);
+                            if (inSlot == null) {
+                                player.inventory.setItemStack(interfaceSlot.addItems(player.inventory.getItemStack()));
                             } else {
-                                player.inventory.setItemStack(inHand);
-                                theSlot.setInventorySlotContents(0, inSlot);
+                                inSlot = inSlot.copy();
+                                final ItemStack inHand = player.inventory.getItemStack().copy();
+
+                                theSlot.setInventorySlotContents(0, null);
+                                player.inventory.setItemStack(null);
+
+                                player.inventory.setItemStack(interfaceSlot.addItems(inHand.copy()));
+
+                                if (player.inventory.getItemStack() == null) {
+                                    player.inventory.setItemStack(inSlot);
+                                } else {
+                                    player.inventory.setItemStack(inHand);
+                                    theSlot.setInventorySlotContents(0, inSlot);
+                                }
                             }
                         }
                     } else {
@@ -179,12 +194,22 @@ public final class ContainerInterfaceTerminal extends AEBaseContainer {
                 case SPLIT_OR_PLACE_SINGLE:
 
                     if (hasItemInHand) {
-                        ItemStack extra = playerHand.removeItems(1, null, null);
-                        if (extra != null) {
-                            extra = interfaceSlot.addItems(extra);
+                        for( int s = 0; s < interfaceHandler.getSizeInventory(); s++ )
+                        {
+                            if( Platform.isSameItem( interfaceHandler.getStackInSlot( s ), player.inventory.getItemStack() ) )
+                            {
+                                canInsert = false;
+                                break;
+                            }
                         }
-                        if (extra != null) {
-                            playerHand.addItems(extra);
+                        if( canInsert ) {
+                            ItemStack extra = playerHand.removeItems(1, null, null);
+                            if (extra != null && !interfaceSlot.containsItems()) {
+                                extra = interfaceSlot.addItems(extra);
+                            }
+                            if (extra != null) {
+                                playerHand.addItems(extra);
+                            }
                         }
                     } else if (is != null) {
                         ItemStack extra = interfaceSlot.removeItems((is.stackSize + 1) / 2, null, null);
@@ -284,6 +309,10 @@ public final class ContainerInterfaceTerminal extends AEBaseContainer {
         if (tag.hasNoTags()) {
             tag.setLong("sortBy", inv.sortBy);
             tag.setString("un", inv.unlocalizedName);
+            tag.setInteger("x", inv.X);
+            tag.setInteger("y", inv.Y);
+            tag.setInteger("z", inv.Z);
+            tag.setInteger("dim", inv.dim);
         }
 
         for (int x = 0; x < length; x++) {
@@ -312,6 +341,10 @@ public final class ContainerInterfaceTerminal extends AEBaseContainer {
         private final IInventory client;
         private final IInventory server;
         private final int offset;
+        private final int X;
+        private final int Y;
+        private final int Z;
+        private final int dim;
 
         public InvTracker(final DualityInterface dual, final IInventory patterns, final String unlocalizedName, int offset, int size) {
             this.server = patterns;
@@ -319,6 +352,10 @@ public final class ContainerInterfaceTerminal extends AEBaseContainer {
             this.unlocalizedName = unlocalizedName;
             this.sortBy = dual.getSortValue() + offset << 16;
             this.offset = offset;
+            X = dual.getLocation().x;
+            Y = dual.getLocation().y;
+            Z = dual.getLocation().z;
+            dim = dual.getLocation().getDimension();
         }
     }
 

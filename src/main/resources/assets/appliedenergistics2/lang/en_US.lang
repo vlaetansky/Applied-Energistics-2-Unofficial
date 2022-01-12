@@ -251,7 +251,7 @@ gui.tooltips.appliedenergistics2.SubstitutionsDescDisabled=Prevent substitutions
 gui.tooltips.appliedenergistics2.PatternSlotConfigTitle=Switch Terminal Mode
 gui.tooltips.appliedenergistics2.PatternSlotConfigInfo=Switch slot pattern mode beween (16 -> 4) and (4 -> 16)
 gui.tooltips.appliedenergistics2.Encode=Encode Pattern
-gui.tooltips.appliedenergistics2.EncodeDescription=Write the entered pattern to the current encoded pattern, or to available blank pattern.
+gui.tooltips.appliedenergistics2.EncodeDescription=Write the entered pattern to the current encoded pattern, or to available blank pattern. Hold Shift to transfer directly to your inventory
 gui.tooltips.appliedenergistics2.FuzzyMode=Fuzzy Comparison
 gui.tooltips.appliedenergistics2.FZPercent_25=Split Damage at 25%
 gui.tooltips.appliedenergistics2.FZPercent_50=Split Damage at 50%
@@ -345,6 +345,12 @@ gui.tooltips.appliedenergistics2.DoublePattern=Double pattern
 gui.tooltips.appliedenergistics2.DoublePatternHint=Double stack sizes of pattern inputs and output(s)
 gui.tooltips.appliedenergistics2.CraftingStatus=Crafting Status
 gui.tooltips.appliedenergistics2.CraftingStatusDesc=Opens crafting status window
+gui.tooltips.appliedenergistics2.FreeMolecularSlotShortcut=Show Crafting interfaces with free slots
+gui.tooltips.appliedenergistics2.FreeMolecularSlotShortcutDesc=Shortcut that toggles interfaces with free slots and searches for molecular assemblers
+gui.tooltips.appliedenergistics2.ToggleShowFullInterfaces=Toggles showing interfaces with full slots
+gui.tooltips.appliedenergistics2.ToggleShowFullInterfacesOnDesc=Showing all interfaces
+gui.tooltips.appliedenergistics2.ToggleShowFullInterfacesOffDesc=Showing only interfaces with free slots
+gui.tooltips.appliedenergistics2.HighlightInterface=Highlight interface
 
 # Units
 gui.appliedenergistics2.units.appliedenergstics=AE

@@ -33,6 +33,10 @@ public class PartInterfaceTerminal extends AbstractPartDisplay
 	private static final CableBusTextures FRONT_DARK_ICON = CableBusTextures.PartInterfaceTerm_Dark;
 	private static final CableBusTextures FRONT_COLORED_ICON = CableBusTextures.PartInterfaceTerm_Colored;
 
+	public String in = "";
+	public String out = "";
+	public boolean onlyInterfacesWithFreeSlots = false;
+
 	public PartInterfaceTerminal( final ItemStack is )
 	{
 		super( is );
@@ -75,5 +79,10 @@ public class PartInterfaceTerminal extends AbstractPartDisplay
 	public CableBusTextures getFrontDark()
 	{
 		return FRONT_DARK_ICON;
+	}
+
+	public void saveSearchStrings(String in, String out){
+		this.in = in;
+		this.out = out;
 	}
 }

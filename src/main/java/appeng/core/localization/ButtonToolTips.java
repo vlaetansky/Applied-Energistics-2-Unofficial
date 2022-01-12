@@ -67,7 +67,15 @@ public enum ButtonToolTips
 	SchedulingMode, SchedulingModeDefault, SchedulingModeRoundRobin, SchedulingModeRandom, OreFilter, OreFilterHint, DoublePattern, DoublePatternHint,
 
 	SaveSearchString, SaveSearchStringYes, SaveSearchStringNo,
-	CraftingStatus, CraftingStatusDesc;
+	CraftingStatus, CraftingStatusDesc,
+	FreeMolecularSlotShortcut,
+	FreeMolecularSlotShortcutDesc,
+	ToggleShowFullInterfaces,
+	ToggleShowFullInterfacesOnDesc,
+	ToggleShowFullInterfacesOffDesc,
+	HighlightInterface,
+	HighlightInterfaceDesc
+	;
 
 	private final String root;
 
