@@ -157,7 +157,7 @@ public final class ContainerInterfaceTerminal extends AEBaseContainer {
                     {
                         for( int s = 0; s < interfaceHandler.getSizeInventory(); s++ )
                         {
-                            if( Platform.isSameItem( interfaceHandler.getStackInSlot( s ), player.inventory.getItemStack() ) )
+                            if( Platform.isSameItemPrecise( interfaceHandler.getStackInSlot( s ), player.inventory.getItemStack() ) )
                             {
                                 canInsert = false;
                                 break;
@@ -196,7 +196,7 @@ public final class ContainerInterfaceTerminal extends AEBaseContainer {
                     if (hasItemInHand) {
                         for( int s = 0; s < interfaceHandler.getSizeInventory(); s++ )
                         {
-                            if( Platform.isSameItem( interfaceHandler.getStackInSlot( s ), player.inventory.getItemStack() ) )
+                            if( Platform.isSameItemPrecise( interfaceHandler.getStackInSlot( s ), player.inventory.getItemStack() ) )
                             {
                                 canInsert = false;
                                 break;
