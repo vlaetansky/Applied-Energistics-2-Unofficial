@@ -71,6 +71,7 @@ public class GuiInterfaceTerminal extends AEBaseGui
 	final private PartInterfaceTerminal partInterfaceTerminal;
 	private GuiButton guiButtonHide;
 	private GuiButton guiButtonNextAssembler;
+	private boolean searchForAssemblersStatus = false;
 
 	public GuiInterfaceTerminal( final InventoryPlayer inventoryPlayer, final PartInterfaceTerminal te )
 	{
@@ -184,6 +185,7 @@ public class GuiInterfaceTerminal extends AEBaseGui
 		if( btn == 1 && this.searchFieldInputs.isMouseIn( xCoord, yCoord ) )
 		{
 			this.searchFieldInputs.setText( "" );
+			searchForAssemblersStatus = false;
 			this.refreshList();
 		}
 
@@ -192,6 +194,7 @@ public class GuiInterfaceTerminal extends AEBaseGui
 		if( btn == 1 && this.searchFieldOutputs.isMouseIn( xCoord, yCoord ) )
 		{
 			this.searchFieldOutputs.setText( "" );
+			searchForAssemblersStatus = false;
 			this.refreshList();
 		}
 
@@ -219,23 +222,33 @@ public class GuiInterfaceTerminal extends AEBaseGui
 
 		if (btn == guiButtonHide)
 		{
+			searchForAssemblersStatus = false;
 			partInterfaceTerminal.onlyInterfacesWithFreeSlots = !partInterfaceTerminal.onlyInterfacesWithFreeSlots;
 			this.refreshList();
 		}
 
 		if (btn == guiButtonNextAssembler)
 		{
-			// Set Search to "Molecular Assembler" and set "Only Free Interface"
-			boolean currentOnlyInterfacesWithFreeSlots = this.partInterfaceTerminal.onlyInterfacesWithFreeSlots;
-			String currentSearchText = this.searchFieldOutputs.getText();
+			if (searchForAssemblersStatus)
+			{
+				searchForAssemblersStatus = false;
+				this.partInterfaceTerminal.onlyInterfacesWithFreeSlots = false;
+				this.refreshList();
+			}
+			else {
+				// Set Search to "Molecular Assembler" and set "Only Free Interface"
+				boolean currentOnlyInterfacesWithFreeSlots = this.partInterfaceTerminal.onlyInterfacesWithFreeSlots;
+				String currentSearchText = this.searchFieldOutputs.getText();
 
-			this.partInterfaceTerminal.onlyInterfacesWithFreeSlots = true;
-			this.searchFieldOutputs.setText("Molecular Assembler");
+				this.partInterfaceTerminal.onlyInterfacesWithFreeSlots = true;
+				this.searchFieldOutputs.setText("Molecular Assembler");
 
-			this.refreshList();
+				this.refreshList();
 
-			this.partInterfaceTerminal.onlyInterfacesWithFreeSlots = currentOnlyInterfacesWithFreeSlots;
-			this.searchFieldOutputs.setText(currentSearchText);
+				this.partInterfaceTerminal.onlyInterfacesWithFreeSlots = currentOnlyInterfacesWithFreeSlots;
+				this.searchFieldOutputs.setText(currentSearchText);
+				searchForAssemblersStatus = true;
+			}
 		}
 	}
 
@@ -290,6 +303,7 @@ public class GuiInterfaceTerminal extends AEBaseGui
 
 			if( this.searchFieldInputs.textboxKeyTyped( character, key ) || this.searchFieldOutputs.textboxKeyTyped( character, key ))
 			{
+				searchForAssemblersStatus = false;
 				this.refreshList();
 			}
 			else
@@ -343,6 +357,7 @@ public class GuiInterfaceTerminal extends AEBaseGui
 			this.refreshList = false;
 			// invalid caches on refresh
 			this.cachedSearches.clear();
+			searchForAssemblersStatus = false;
 			this.refreshList();
 		}
 	}
