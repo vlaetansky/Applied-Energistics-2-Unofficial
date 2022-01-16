@@ -145,7 +145,7 @@ public class WorldCoord
 		return Math.sqrt(dx*dx + dy*dy + dz*dz);
 	}
 
-	public static long getDistance( WorldCoord blockPos, WorldCoord blockPos2 )
+	public static long getTaxicabDistance( WorldCoord blockPos, WorldCoord blockPos2 )
 	{
 		long dx = Math.abs(blockPos.x - blockPos2.x);
 		long dy = Math.abs(blockPos.y - blockPos2.y);

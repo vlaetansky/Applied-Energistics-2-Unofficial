@@ -5,19 +5,19 @@ import appeng.api.util.DimensionalCoord;
 // taken from McJty's McJtyLib
 public class BlockPosHighlighter
 {
-    private static DimensionalCoord hilightedBlock;
-    private static long expireHilight;
+    private static DimensionalCoord highlightedBlock;
+    private static long expireHighlight;
 
-    public static void hilightBlock(DimensionalCoord c, long expireHilight) {
-        hilightedBlock = c;
-        BlockPosHighlighter.expireHilight = expireHilight;
+    public static void highlightBlock(DimensionalCoord c, long expireHighlight) {
+        highlightedBlock = c;
+        BlockPosHighlighter.expireHighlight = expireHighlight;
     }
 
-    public static DimensionalCoord getHilightedBlock() {
-        return hilightedBlock;
+    public static DimensionalCoord getHighlightedBlock() {
+        return highlightedBlock;
     }
 
-    public static long getExpireHilight() {
-        return expireHilight;
+    public static long getExpireHighlight() {
+        return expireHighlight;
     }
 }

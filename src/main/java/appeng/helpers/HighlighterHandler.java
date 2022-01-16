@@ -17,7 +17,7 @@ public class HighlighterHandler
     }
 
     private static void renderHilightedBlock( RenderWorldLastEvent event ) {
-        DimensionalCoord c = BlockPosHighlighter.getHilightedBlock();
+        DimensionalCoord c = BlockPosHighlighter.getHighlightedBlock();
         if (c == null) {
             return;
         }
@@ -25,8 +25,8 @@ public class HighlighterHandler
         int dimension = mc.theWorld.provider.dimensionId;
         long time = System.currentTimeMillis();
 
-        if (time > BlockPosHighlighter.getExpireHilight() || dimension != BlockPosHighlighter.getHilightedBlock().getDimension()) {
-            BlockPosHighlighter.hilightBlock(null, -1);
+        if (time > BlockPosHighlighter.getExpireHighlight() || dimension != BlockPosHighlighter.getHighlightedBlock().getDimension()) {
+            BlockPosHighlighter.highlightBlock(null, -1);
             return;
         }
 

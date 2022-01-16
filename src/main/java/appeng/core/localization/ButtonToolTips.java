@@ -68,13 +68,17 @@ public enum ButtonToolTips
 
 	SaveSearchString, SaveSearchStringYes, SaveSearchStringNo,
 	CraftingStatus, CraftingStatusDesc,
-	FreeMolecularSlotShortcut,
-	FreeMolecularSlotShortcutDesc,
+	MolecularAssemblerOn,
+	MolecularAssemblerOff,
+	MolecularAssemblerDesc,
 	ToggleShowFullInterfaces,
 	ToggleShowFullInterfacesOnDesc,
 	ToggleShowFullInterfacesOffDesc,
 	HighlightInterface,
-	HighlightInterfaceDesc
+	HighlightInterfaceDesc,
+	SearchFieldInputs,
+	SearchFieldOutputs
+
 	;
 
 	private final String root;

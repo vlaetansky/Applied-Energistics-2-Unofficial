@@ -40,6 +40,7 @@ import appeng.util.InventoryAdaptor;
 import appeng.util.Platform;
 import appeng.util.inv.AdaptorIInventory;
 import appeng.util.inv.AdaptorPlayerHand;
+import appeng.util.inv.ItemSlot;
 import appeng.util.inv.WrapperInvSlot;
 import com.google.common.collect.HashMultimap;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -226,14 +227,14 @@ public final class ContainerInterfaceTerminal extends AEBaseContainer {
 
                     final IInventory mySlot = slotInv.getWrapper(slot + inv.offset);
                     final InventoryAdaptor playerInv = InventoryAdaptor.getAdaptor(player, ForgeDirection.UNKNOWN);
-                    mySlot.setInventorySlotContents(0, playerInv.addItems(mySlot.getStackInSlot(0)));
+                    mySlot.setInventorySlotContents(0, mergeToPlayerInventory(playerInv, mySlot.getStackInSlot(0)));
 
                     break;
                 case MOVE_REGION:
 
                     final InventoryAdaptor playerInvAd = InventoryAdaptor.getAdaptor(player, ForgeDirection.UNKNOWN);
                     for (int x = 0; x < inv.client.getSizeInventory(); x++) {
-                        inv.server.setInventorySlotContents(x + inv.offset, playerInvAd.addItems(inv.server.getStackInSlot(x + inv.offset)));
+                        inv.server.setInventorySlotContents(x + inv.offset, mergeToPlayerInventory(playerInvAd, inv.server.getStackInSlot(x + inv.offset)));
                     }
 
                     break;
@@ -251,7 +252,20 @@ public final class ContainerInterfaceTerminal extends AEBaseContainer {
             this.updateHeld(player);
         }
     }
-
+    private ItemStack mergeToPlayerInventory(InventoryAdaptor playerInv, ItemStack stack)
+    {
+        if (stack == null)
+            return null;
+        for (ItemSlot slot: playerInv) {
+            if (Platform.isSameItemPrecise(slot.getItemStack(), stack)) {
+                if (slot.getItemStack().stackSize < slot.getItemStack().getMaxStackSize()) {
+                    ++slot.getItemStack().stackSize;
+                    return null;
+                }
+            }
+        }
+        return playerInv.addItems(stack);
+    }
     private void regenList(final NBTTagCompound data) {
         this.byId.clear();
         this.diList.clear();
