@@ -68,9 +68,9 @@ public enum ButtonToolTips
 
 	SaveSearchString, SaveSearchStringYes, SaveSearchStringNo,
 	CraftingStatus, CraftingStatusDesc,
-	MolecularAssemblerOn,
-	MolecularAssemblerOff,
-	MolecularAssemblerDesc,
+	ToggleMolecularAssemblers,
+	ToggleMolecularAssemblersDescOn,
+	ToggleMolecularAssemblersDescOff,
 	ToggleShowFullInterfaces,
 	ToggleShowFullInterfacesOnDesc,
 	ToggleShowFullInterfacesOffDesc,

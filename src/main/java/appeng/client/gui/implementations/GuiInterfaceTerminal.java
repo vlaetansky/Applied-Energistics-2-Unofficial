@@ -54,9 +54,7 @@ public class GuiInterfaceTerminal extends AEBaseGui
 {
 
 	private static final int LINES_ON_PAGE = 6;
-
-	// TODO: copied from GuiMEMonitorable. It looks not changed, maybe unneeded?
-	private final int offsetX = 21;
+	private static final int offsetX = 21;
 
 	private final HashMap<Long, ClientDCInternalInv> byId = new HashMap<>();
 	private final HashMultimap<String, ClientDCInternalInv> byName = HashMultimap.create();
@@ -68,20 +66,20 @@ public class GuiInterfaceTerminal extends AEBaseGui
 
 	private final Map<String, Set<Object>> cachedSearches = new WeakHashMap<>();
 
-	private boolean refreshList = false;
 	private MEGuiTextField searchFieldOutputs;
 	private MEGuiTextField searchFieldInputs;
-	final private PartInterfaceTerminal partInterfaceTerminal;
 	private GuiButton guiButtonHideFull;
 	private GuiButton guiButtonAssemblersOnly;
-	private boolean toggleMolecularAssemblers = false;
-	private static String MOLECULAR_ASSEMBLER = "molecular assembler";
+	private boolean refreshList = false;
+	private boolean onlyInterfacesWithFreeSlots = false;
+	private boolean onlyMolecularAssemblers = false;
+
+	private static final String MOLECULAR_ASSEMBLER = "molecular assembler";
 
 	public GuiInterfaceTerminal( final InventoryPlayer inventoryPlayer, final PartInterfaceTerminal te )
 	{
 		super( new ContainerInterfaceTerminal( inventoryPlayer, te ) );
 
-		this.partInterfaceTerminal = te;
 		final GuiScrollbar scrollbar = new GuiScrollbar();
 		this.setScrollBar( scrollbar );
 		this.xSize = 208;
@@ -110,16 +108,6 @@ public class GuiInterfaceTerminal extends AEBaseGui
 		this.searchFieldOutputs.setTextColor( 0xFFFFFF );
 		this.searchFieldOutputs.setVisible( true );
 		this.searchFieldOutputs.setFocused( true );
-
-		this.searchFieldInputs.setText( partInterfaceTerminal.in );
-		this.searchFieldOutputs.setText( partInterfaceTerminal.out );
-	}
-
-	@Override
-	public void onGuiClosed()
-	{
-		partInterfaceTerminal.saveSearchStrings( this.searchFieldInputs.getText().toLowerCase(), this.searchFieldOutputs.getText().toLowerCase() );
-		super.onGuiClosed();
 	}
 
 	@Override
@@ -132,10 +120,10 @@ public class GuiInterfaceTerminal extends AEBaseGui
 
 		final int ex = this.getScrollBar().getCurrentScroll();
 
-		this.guiButtonAssemblersOnly = new GuiImgButton(guiLeft + 123, guiTop + 25, Settings.ACTIONS, toggleMolecularAssemblers ? ActionItems.MOLECULAR_ASSEMBLEERS_ON : ActionItems.MOLECULAR_ASSEMBLEERS_OFF);
+		this.guiButtonAssemblersOnly = new GuiImgButton(guiLeft + 123, guiTop + 25, Settings.ACTIONS, onlyMolecularAssemblers ? ActionItems.MOLECULAR_ASSEMBLEERS_ON : ActionItems.MOLECULAR_ASSEMBLEERS_OFF);
 		this.buttonList.add(guiButtonAssemblersOnly);
 
-		guiButtonHideFull = new GuiImgButton( guiLeft + 141, guiTop + 25, Settings.ACTIONS, this.partInterfaceTerminal.onlyInterfacesWithFreeSlots ? ActionItems.TOGGLE_SHOW_FULL_INTERFACES_OFF : ActionItems.TOGGLE_SHOW_FULL_INTERFACES_ON );
+		guiButtonHideFull = new GuiImgButton( guiLeft + 141, guiTop + 25, Settings.ACTIONS, this.onlyInterfacesWithFreeSlots ? ActionItems.TOGGLE_SHOW_FULL_INTERFACES_OFF : ActionItems.TOGGLE_SHOW_FULL_INTERFACES_ON );
 		this.buttonList.add(guiButtonHideFull);
 
 		this.inventorySlots.inventorySlots.removeIf( slot -> slot instanceof SlotDisconnected );
@@ -179,7 +167,7 @@ public class GuiInterfaceTerminal extends AEBaseGui
 		if( searchFieldInputs.isMouseIn( mouseX , mouseY ) )
 			drawTooltip( Mouse.getEventX() * this.width / this.mc.displayWidth - offsetX, mouseY - guiTop, 0, ButtonToolTips.SearchFieldInputs.getLocal() );
 		else if( searchFieldOutputs.isMouseIn( mouseX, mouseY ) )
-			drawTooltip( Mouse.getEventX() * this.width / this.mc.displayWidth - offsetX, mouseY - guiTop,0, ButtonToolTips.SearchFieldOutputs.getLocal() );
+			drawTooltip( Mouse.getEventX() * this.width / this.mc.displayWidth - offsetX, mouseY - guiTop, 0, ButtonToolTips.SearchFieldOutputs.getLocal() );
 	}
 
 	@Override
@@ -225,13 +213,13 @@ public class GuiInterfaceTerminal extends AEBaseGui
 
 		if (btn == guiButtonHideFull)
 		{
-			partInterfaceTerminal.onlyInterfacesWithFreeSlots = !partInterfaceTerminal.onlyInterfacesWithFreeSlots;
+			onlyInterfacesWithFreeSlots = !onlyInterfacesWithFreeSlots;
 			this.refreshList();
 		}
 
 		if (btn == guiButtonAssemblersOnly)
 		{
-			toggleMolecularAssemblers = !toggleMolecularAssemblers;
+			onlyMolecularAssemblers = !onlyMolecularAssemblers;
 			this.refreshList();
 		}
 	}
@@ -340,7 +328,7 @@ public class GuiInterfaceTerminal extends AEBaseGui
 			this.refreshList = false;
 			// invalid caches on refresh
 			this.cachedSearches.clear();
-			toggleMolecularAssemblers = false;
+			onlyMolecularAssemblers = false;
 			this.refreshList();
 		}
 	}
@@ -359,7 +347,7 @@ public class GuiInterfaceTerminal extends AEBaseGui
 		final String searchFieldInputs = this.searchFieldInputs.getText().toLowerCase();
 		final String searchFieldOutputs = this.searchFieldOutputs.getText().toLowerCase();
 
-		final Set<Object> cachedSearch = this.getCacheForSearchTerm( "IN:" + searchFieldInputs + " OUT:" + searchFieldOutputs + partInterfaceTerminal.onlyInterfacesWithFreeSlots + this.toggleMolecularAssemblers);
+		final Set<Object> cachedSearch = this.getCacheForSearchTerm( "IN:" + searchFieldInputs + " OUT:" + searchFieldOutputs + onlyInterfacesWithFreeSlots + this.onlyMolecularAssemblers);
 		final boolean rebuild = cachedSearch.isEmpty();
 
 		for( final ClientDCInternalInv entry : this.byId.values() )
@@ -371,7 +359,7 @@ public class GuiInterfaceTerminal extends AEBaseGui
 			}
 
 			// Shortcut to skip any filter if search term is ""/empty
-			boolean found = (searchFieldInputs.isEmpty() && searchFieldOutputs.isEmpty()) && !partInterfaceTerminal.onlyInterfacesWithFreeSlots;
+			boolean found = (searchFieldInputs.isEmpty() && searchFieldOutputs.isEmpty()) && !onlyInterfacesWithFreeSlots;
 			boolean interfaceHasFreeSlots = false;
 
 			// Search if the current inventory holds a pattern containing the search term.
@@ -404,14 +392,18 @@ public class GuiInterfaceTerminal extends AEBaseGui
 			}
 
 			String name = entry.getName().toLowerCase();
-			if (toggleMolecularAssemblers)
-				found &= name.equals(MOLECULAR_ASSEMBLER);
+			if (onlyMolecularAssemblers) {
+				if (searchFieldInputs.isEmpty() && searchFieldOutputs.isEmpty())
+					found = name.equals(MOLECULAR_ASSEMBLER);
+				else
+					found &= name.equals(MOLECULAR_ASSEMBLER);
+			}
 			else
 				found |= name.contains( searchFieldInputs ) && name.contains( searchFieldOutputs );
 
 			if (found)
 			{
-				if (!partInterfaceTerminal.onlyInterfacesWithFreeSlots || interfaceHasFreeSlots)
+				if (!onlyInterfacesWithFreeSlots || interfaceHasFreeSlots)
 				{
 					this.byName.put(entry.getName(), entry);
 					cachedSearch.add(entry);
