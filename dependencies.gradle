@@ -4,13 +4,13 @@ dependencies {
     compileOnly("com.github.GTNewHorizons:CodeChickenLib:master-SNAPSHOT:dev") {
         transitive = false
     }
-    compileOnly("com.github.GTNewHorizons:NotEnoughItems:master-SNAPSHOT:dev") {
+    compileOnly("com.github.GTNewHorizons:NotEnoughItems:2.1.21-GTNH:dev") {
         transitive = false
     }
     compileOnly("com.github.GTNewHorizons:ForgeMultipart:master-SNAPSHOT:dev") {
         transitive = false
     }
-    compileOnly("com.github.GTNewHorizons:GT5-Unofficial:master-SNAPSHOT:dev") {
+    compileOnly("com.github.GTNewHorizons:GT5-Unofficial:5.09.40.17:dev") {
         transitive = false
     }
     compileOnly("com.github.GTNewHorizons:inventory-tweaks:master-SNAPSHOT:api") {
@@ -19,7 +19,7 @@ dependencies {
     compileOnly("com.github.GTNewHorizons:waila:master-SNAPSHOT:api") {
         transitive = false
     }
-    compileOnly("com.github.GTNewHorizons:Railcraft:master-SNAPSHOT:api") {
+    compileOnly("com.github.GTNewHorizons:Railcraft:9.13.4:api") {
         transitive = false
     }
     compileOnly("com.github.GTNewHorizons:Jabba:master-SNAPSHOT:dev") {
