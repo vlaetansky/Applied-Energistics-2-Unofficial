@@ -43,7 +43,7 @@ jobs:
           prerelease: false
           title: "${{ env.RELEASE_VERSION }}"
           files: build/libs/*.jar
-          
+
       - name: Publish to Maven
         run: ./gradlew publish
         env:
