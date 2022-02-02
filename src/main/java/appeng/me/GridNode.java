@@ -505,6 +505,12 @@ public class GridNode implements IGridNode, IPathItem
 			return false;
 		}
 
+		// only connect ultra dense cable to dense cables
+		if (hasFlag(GridFlags.ULTRA_DENSE_CAPACITY) && !hasFlag(GridFlags.DENSE_CAPACITY) &&
+			!(from.hasFlag(GridFlags.ULTRA_DENSE_CAPACITY) ||
+					(from.hasFlag(GridFlags.DENSE_CAPACITY) && !from.hasFlag(GridFlags.CANNOT_CARRY))))
+			return false;
+
 		return from.getColor().matches( this.getColor() );
 	}
 
