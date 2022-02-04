@@ -61,6 +61,16 @@ tile.appliedenergistics2.SkyStoneBrickStairBlock.name=Ступеньки из к
 tile.appliedenergistics2.SkyStoneSmallBrickStairBlock.name=Ступеньки из малого кирпича небесного камня
 tile.appliedenergistics2.SkyStoneStairBlock.name=Ступеньки из небесного камня
 
+# Slabs
+tile.appliedenergistics2.ChiseledQuartzSlabBlock.name=Плита из резного истинного кварца
+tile.appliedenergistics2.FluixSlabBlock.name=Изменьчивая плита
+tile.appliedenergistics2.QuartzPillarSlabBlock.name=Плита из колонны истинного кварца
+tile.appliedenergistics2.QuartzSlabBlock.name=Плита из истинного кварца
+tile.appliedenergistics2.SkyStoneBlockSlabBlock.name=Плита из блока небесного камня
+tile.appliedenergistics2.SkyStoneBrickSlabBlock.name=Плита из кирпича небесного камня
+tile.appliedenergistics2.SkyStoneSmallBrickSlabBlock.name=Плита из малого кирпича небесного камня
+tile.appliedenergistics2.SkyStoneSlabBlock.name=Плита из небесного камня
+
 # Chat Messages
 chat.appliedenergistics2.ChestCannotReadStorageCell=МЭ сундук не может прочитать ячейку хранения.
 chat.appliedenergistics2.SettingCleared=Настройки сброшены.
@@ -77,10 +87,15 @@ chat.appliedenergistics2.SavedSettings=Настройки успешно сох�
 chat.appliedenergistics2.AmmoDepleted=Боеприпасы исчерпаны.
 chat.appliedenergistics2.isNowLocked=Монитор заблокирован.
 chat.appliedenergistics2.isNowUnlocked=Монитор разблокирован.
-
+chat.appliedenergistics2.TunnelNotConnected=Туннель не подключен.
+chat.appliedenergistics2.TunnelInputIsAt=Вход туннеля находятся (%d, %d, %d)
+chat.appliedenergistics2.TunnelHasNoOutputs=Туннель не имеет выходов.
+chat.appliedenergistics2.TunnelOutputsAreAt=Выходы туннеля находятся в:
+chat.appliedenergistics2.InterfaceInOtherDim=Интерфейс расположен в измерении: %d и не может быть подсвечен
+chat.appliedenergistics2.InterfaceHighlighted=Интерфейс сейчас подсвечен и находится: %d, %d, %d
 # Creative Tabs
 itemGroup.appliedenergistics2=Applied Energistics 2
-itemGroup.appliedenergistics2.facades=Applied Energistics 2: Фасады
+itemGroup.appliedenergistics2.facades=Applied Energistics 2 - Фасады
 
 # GUI
 gui.appliedenergistics2.CraftingTerminal=Терминал создания
@@ -91,6 +106,9 @@ gui.appliedenergistics2.RedstoneTunnel=Красный камень
 gui.appliedenergistics2.EUTunnel=EU
 gui.appliedenergistics2.RFTunnel=RF
 gui.appliedenergistics2.LightTunnel=Свет
+gui.appliedenergistics2.OCTunnel=OpenComputers
+gui.appliedenergistics2.PressureTunnel=Pressure
+gui.appliedenergistics2.GTTunnel=GT EU
 
 gui.appliedenergistics2.security.extract.name=Забирать
 gui.appliedenergistics2.security.inject.name=Класть
@@ -166,6 +184,9 @@ gui.appliedenergistics2.Crafts=Создаёт
 gui.appliedenergistics2.And=и
 gui.appliedenergistics2.Creates=Делает
 gui.appliedenergistics2.With=из
+gui.appliedenergistics2.Substitute=Использовать взаимозаменяемые:
+gui.appliedenergistics2.Yes=Да
+gui.appliedenergistics2.No=Нет
 gui.appliedenergistics2.InWorldCrafting=AE2 в мировом создании
 gui.appliedenergistics2.inWorldFluix=Бросьте 1 заряженный истинный кварц + 1 кварц Нижнего мира + пыль красного камня в воду рядом друг с другом и немного подождите, чтобы получить 2 изменчивых кристалла.
 gui.appliedenergistics2.inWorldPurification=Бросьте любое семя кристалла, сделанное из пыли кристалла и песок в лужу воды,; чтобы ускорить процесс добавьте ускорители роста кристаллов.
@@ -174,8 +195,9 @@ gui.appliedenergistics2.inWorldPurificationFluix=Бросьте изменчив
 gui.appliedenergistics2.inWorldSingularity=Чтобы сделать, бросьте 1 сингулярность и 1 пыль Края и сделайте взрыв рядом с предметами.
 gui.appliedenergistics2.ChargedQuartz=Заряженный истинный кварц создаётся с помощью установки не заряженного истинного кварца в зарядник, который подключен к питанию.
 gui.appliedenergistics2.ChargedQuartzFind=Заряженный истинный кварц может быть найден в мире реже, чем истинный кварц, он выглядит как обычный истинный кварц, за исключением того, что он сверкает.
-gui.appliedenergistics2.OfSecondOutput=Шанс вторичного выхода: %1$d%%
 gui.appliedenergistics2.NoSecondOutput=Нет вторичного выхода
+gui.appliedenergistics2.OfSecondOutput=Шанс вторичного выхода: %1$d%%
+gui.appliedenergistics2.MultipleOutputs=%1$d%% second, %2$d%% third output.
 gui.appliedenergistics2.SelectAmount=Выбрать количество
 gui.appliedenergistics2.CopyMode=Режим копирования
 gui.appliedenergistics2.CopyModeDesc=Контролирует очищено ли содержимое панели конфигурации, когда ячейка была убрана.
@@ -184,6 +206,7 @@ gui.appliedenergistics2.Lumen=Люмен
 gui.appliedenergistics2.Empty=Пустой
 gui.appliedenergistics2.Stored=Хранится
 gui.appliedenergistics2.Cancel=Отмена
+gui.appliedenergistics2.ETAFormat=HH:mm:ss
 gui.appliedenergistics2.Crafting=Создание
 gui.appliedenergistics2.Scheduled=Запланировано
 gui.appliedenergistics2.CraftingStatus=Статус создания
@@ -211,26 +234,34 @@ gui.appliedenergistics2.inWorldCraftingPresses=С помощью метеори�
 gui.appliedenergistics2.Included=Принимать,
 gui.appliedenergistics2.Excluded=Не принимать,
 gui.appliedenergistics2.Partitioned=Размечена
+gui.appliedenergistics2.PartitionedOre=Фильтр Ore dictionary
 gui.appliedenergistics2.Precise=точная
 gui.appliedenergistics2.Fuzzy=нечёткая
-gui.appliedenergistics2.SmallFontCraft=Сделать
+gui.appliedenergistics2.SmallFontCraft=Создать
 gui.appliedenergistics2.LargeFontCraft=+
+gui.appliedenergistics2.Renamer=Пользовательское имя: (Введите, чтобы установить)
+gui.appliedenergistics2.OreFilterLabel=Фильтр Ore dictionary
+gui.appliedenergistics2.HoldShiftForTooltip=Удерживайте нажатой клавишу shift для расширенной всплывающей подсказки
 gui.appliedenergistics2.Nothing=Ничего
 
 # GUI Tooltips
 gui.tooltips.appliedenergistics2.Stash=Хранить предметы
 gui.tooltips.appliedenergistics2.StashDesc=Возвращает предметы на сетку создания, в сетевое хранилище.
 gui.tooltips.appliedenergistics2.Substitutions=Ore-Dict замещения
-gui.tooltips.appliedenergistics2.SubstitutionsDesc=Измените замещения для вводимых компонентов.
-gui.tooltips.appliedenergistics2.SubstitutionsOn=Замещения включены
-gui.tooltips.appliedenergistics2.SubstitutionsOff=Замещения выключены
+gui.tooltips.appliedenergistics2.SubstitutionsDescEnabled=Разрешить замены входных компонентов.
+gui.tooltips.appliedenergistics2.SubstitutionsDescDisabled=Предотвратить замены входных компонентов.
+
+gui.tooltips.appliedenergistics2.PatternSlotConfigTitle=Переключить режим терминала
+gui.tooltips.appliedenergistics2.PatternSlotConfigInfo=Переключить режим слота шаблона между (16 -> 4) и (4 -> 16)
 gui.tooltips.appliedenergistics2.Encode=Закодировать шаблон
 gui.tooltips.appliedenergistics2.EncodeDescription=Напишите введённый шаблон к текущему закодированному шаблону, или к доступному чистому шаблону.
+
 gui.tooltips.appliedenergistics2.FuzzyMode=Нечёткое сравнение
 gui.tooltips.appliedenergistics2.FZPercent_25=Разделять урон с 25%
 gui.tooltips.appliedenergistics2.FZPercent_50=Разделять урон с 50%
 gui.tooltips.appliedenergistics2.FZPercent_75=Разделять урон с 75%
 gui.tooltips.appliedenergistics2.FZPercent_99=Разделять урон с 99%
+
 gui.tooltips.appliedenergistics2.SortOrder=Порядок сортировки
 gui.tooltips.appliedenergistics2.SortBy=Сортировать по
 gui.tooltips.appliedenergistics2.FZIgnoreAll=Любое соответствие
@@ -238,6 +269,7 @@ gui.tooltips.appliedenergistics2.TransferDirection=Направление пер
 gui.tooltips.appliedenergistics2.TransferToNetwork=Передавать данные в сеть
 gui.tooltips.appliedenergistics2.TransferToStorageCell=Передавать данные в ячейку хранения
 gui.tooltips.appliedenergistics2.ToggleSortDirection=Переключить направление сортировки
+
 gui.tooltips.appliedenergistics2.StoredItems=Хранящиеся предметы
 gui.tooltips.appliedenergistics2.StoredCraftable=Запасено/можно создать
 gui.tooltips.appliedenergistics2.View=Вид
@@ -251,6 +283,7 @@ gui.tooltips.appliedenergistics2.CondenserOutput=МЭ конденсатор - �
 gui.tooltips.appliedenergistics2.PartitionStorage=Раздел хранения
 gui.tooltips.appliedenergistics2.Clear=Очистить
 gui.tooltips.appliedenergistics2.TrashController=Удаление по нажатию Shift/Пробел.
+
 gui.tooltips.appliedenergistics2.InterfaceBlockingMode=Блокирующий режим
 gui.tooltips.appliedenergistics2.InterfaceCraftingMode=Режим создания
 gui.tooltips.appliedenergistics2.Trash=Уничтожить предметы
@@ -259,17 +292,20 @@ gui.tooltips.appliedenergistics2.Singularity=Конденсировать в с�
 gui.tooltips.appliedenergistics2.Read=Только извлекать
 gui.tooltips.appliedenergistics2.Write=Только вкладывать
 gui.tooltips.appliedenergistics2.ReadWrite=Двухсторонний
+
 gui.tooltips.appliedenergistics2.AlwaysActive=Всегда активен
 gui.tooltips.appliedenergistics2.ActiveWithoutSignal=Активен без сигнала
 gui.tooltips.appliedenergistics2.ActiveWithSignal=Активен с сигналом
 gui.tooltips.appliedenergistics2.ActiveOnPulse=Активируется раз за импульс
 gui.tooltips.appliedenergistics2.EmitLevelsBelow=Излучать, когда уровни ниже предела.
 gui.tooltips.appliedenergistics2.EmitLevelAbove=Излучать, когда уровни выше или равны пределу.
+
 gui.tooltips.appliedenergistics2.SearchMode_Auto=Автоматический поиск
 gui.tooltips.appliedenergistics2.SearchMode_Standard=Обычный поиск
 gui.tooltips.appliedenergistics2.SearchMode_NEIAuto=Автоматический NEI-синхронизированный поиск
 gui.tooltips.appliedenergistics2.SearchMode_NEIStandard=Стандартный NEI-синхронизированный поиск
 gui.tooltips.appliedenergistics2.SearchMode=Режим поля поиска
+
 gui.tooltips.appliedenergistics2.PartitionStorageHint=Настраивает раздел на основе текущих хранящихся предметах.
 gui.tooltips.appliedenergistics2.ClearSettings=Очистить настройки
 gui.tooltips.appliedenergistics2.Craftable=Можно создать
@@ -292,27 +328,54 @@ gui.tooltips.appliedenergistics2.TerminalStyle=Стиль терминала
 gui.tooltips.appliedenergistics2.TerminalStyle_Full=Полноэкранный терминал
 gui.tooltips.appliedenergistics2.TerminalStyle_Tall=Высокий отцентрированный терминал
 gui.tooltips.appliedenergistics2.TerminalStyle_Small=Маленький отцентрированный терминал
+
 gui.tooltips.appliedenergistics2.DoesntDespawn=Этот предмет не будет исчезать.
 gui.tooltips.appliedenergistics2.EmitterMode=Режим излучатель создания
 gui.tooltips.appliedenergistics2.CraftViaRedstone=Излучать сигнал красного камня для создания вещи.
 gui.tooltips.appliedenergistics2.EmitWhenCrafting=Излучать сигнал красного камня при создании вещи.
+
 gui.tooltips.appliedenergistics2.ReportInaccessibleItems=Сообщать о недоступных вещах
 gui.tooltips.appliedenergistics2.ReportInaccessibleItemsYes=Да: Предметы, которые не могут быть извлечены, будут видны.
 gui.tooltips.appliedenergistics2.ReportInaccessibleItemsNo=Нет: Только извлекаемые предметы будут видны.
+
 gui.tooltips.appliedenergistics2.BlockPlacement=Размещение блоков
 gui.tooltips.appliedenergistics2.BlockPlacementYes=Блоки будут размещаться в виде блоков.
 gui.tooltips.appliedenergistics2.BlockPlacementNo=Блоки будут выпадать в виде предметов.
+
+gui.tooltips.appliedenergistics2.SchedulingMode=Режим планирования
+gui.tooltips.appliedenergistics2.SchedulingModeDefault=Экспортирует первый предмет до тех пор, пока сеть не опустеет, затем попробует следующий.
+gui.tooltips.appliedenergistics2.SchedulingModeRoundRobin=Экспорт  в случайном порядке.
+gui.tooltips.appliedenergistics2.SchedulingModeRandom=Экспортировать предметы  в случайном порядке.
+
 gui.tooltips.appliedenergistics2.ItemsStored=Хранящиеся предметы: %s
 gui.tooltips.appliedenergistics2.ItemsRequestable=Запрашиваемые предметы: %s
+gui.tooltips.appliedenergistics2.P2PFrequency=Частота: %s
+gui.tooltips.appliedenergistics2.OreFilterHint=Функциональные элементы с помощью имен Ore Dictionary
+gui.tooltips.appliedenergistics2.OreFilter=Фильтр Ore Dictionary
+gui.tooltips.appliedenergistics2.SearchStringTooltip=Щелкните ПКМ, чтобы очистить строку поиска
+gui.tooltips.appliedenergistics2.SaveSearchString=Сохранить строку поиска
+gui.tooltips.appliedenergistics2.SaveSearchStringYes=Да
+gui.tooltips.appliedenergistics2.SaveSearchStringNo=Нет
+gui.tooltips.appliedenergistics2.DoublePattern=Удвоить шаблон
+gui.tooltips.appliedenergistics2.DoublePatternHint=Удвоить размеры стека входных и выходных предметов шаблона(ов)
 gui.tooltips.appliedenergistics2.CraftingStatus=Статус создания
-gui.tooltips.appliedenergistics2.CraftingStatusDecs=Открывает окно статуса создания
+gui.tooltips.appliedenergistics2.CraftingStatusDesc=Открывает окно статуса создания
+gui.tooltips.appliedenergistics2.ToggleMolecularAssemblers=Переключить отображение только интерфейсов создания
+gui.tooltips.appliedenergistics2.ToggleMolecularAssemblersDescOff=Отображение всех интерфейсов
+gui.tooltips.appliedenergistics2.ToggleMolecularAssemblersDescOn=Показаны только интерфейсы на молекулярных сборщиках
+gui.tooltips.appliedenergistics2.ToggleShowFullInterfaces=Переключить отображение только интерфейсы с полными слотами
+gui.tooltips.appliedenergistics2.ToggleShowFullInterfacesOnDesc=Отображение всех интерфейсов
+gui.tooltips.appliedenergistics2.ToggleShowFullInterfacesOffDesc=Показаны только интерфейсы со свободными слотами
+gui.tooltips.appliedenergistics2.HighlightInterface=Подсветка интерфейсов в мире
+gui.tooltips.appliedenergistics2.SearchFieldInputs=Inputs OR names
+gui.tooltips.appliedenergistics2.SearchFieldOutputs=Outputs OR names
 
 # Units
 gui.appliedenergistics2.units.appliedenergstics=AE
-gui.appliedenergistics2.units.ic2=Energy Units
-gui.appliedenergistics2.units.mekanism=Joules
-gui.appliedenergistics2.units.rotarycraft=Watts
-gui.appliedenergistics2.units.thermalexpansion=Redstone Flux
+gui.appliedenergistics2.units.ic2=Эе
+gui.appliedenergistics2.units.mekanism=Дж
+gui.appliedenergistics2.units.rotarycraft=Вт
+gui.appliedenergistics2.units.thermalexpansion=RF
 
 # Colors
 gui.appliedenergistics2.White=Белый
@@ -343,6 +406,10 @@ waila.appliedenergistics2.Unlocked=Разблокировано
 waila.appliedenergistics2.Showing=Показывает
 waila.appliedenergistics2.Contains=Содержит
 waila.appliedenergistics2.Channels=Каналы: %1$d из %2$d
+waila.appliedenergistics2.P2PUnlinked=Несвязанный
+waila.appliedenergistics2.P2PInputOneOutput=Связанный (Входная сторона)
+waila.appliedenergistics2.P2PInputManyOutputs=Linked (Input Side) - выходов %d
+waila.appliedenergistics2.P2POutput=Связанный (Выходная сторона)
 
 # Items
 item.appliedenergistics2.ItemBasicStorageCell.1k.name=1К МЭ ячейка хранения
@@ -357,40 +424,50 @@ item.appliedenergistics2.ItemFacade.name=Кабельный фасад
 item.appliedenergistics2.ItemCrystalSeed.Certus.name=Семя истинного кварца
 item.appliedenergistics2.ItemCrystalSeed.Nether.name=Семя кварца Нижнего мира
 item.appliedenergistics2.ItemCrystalSeed.Fluix.name=Изменчивое семя
+
+item.appliedenergistics2.ItemPart.InvalidType.name=Отключенный предмет
 item.appliedenergistics2.ItemMaterial.InvalidType.name=Этот предмет отключен.
-item.appliedenergistics2.ItemMaterial.AdvCard.name=Продвинутая карта
+
+item.appliedenergistics2.ItemMaterial.BlankPattern.name=Пустой шаблон
+item.appliedenergistics2.ItemMaterial.FormationCore.name=Ядро формирования
 item.appliedenergistics2.ItemMaterial.AnnihilationCore.name=Ядро истребления
 item.appliedenergistics2.ItemMaterial.BasicCard.name=Базовая карта
-item.appliedenergistics2.ItemMaterial.BlankPattern.name=Пустой шаблон
-item.appliedenergistics2.ItemMaterial.CalcProcessor.name=Вычислительный процессор
+item.appliedenergistics2.ItemMaterial.AdvCard.name=Продвинутая карта
+
+
 item.appliedenergistics2.ItemMaterial.CardCapacity.name=Карта ёмкости
+item.appliedenergistics2.ItemMaterial.CardPatternCapacity.name=Карта ёмкости интерфейса
 item.appliedenergistics2.ItemMaterial.CardFuzzy.name=Карта нечёткости
 item.appliedenergistics2.ItemMaterial.CardInverter.name=Карта инвертирования
 item.appliedenergistics2.ItemMaterial.CardRedstone.name=Карта красного камня
 item.appliedenergistics2.ItemMaterial.CardSpeed.name=Карта ускорения
+item.appliedenergistics2.ItemMaterial.CardOreFilter.name=Карта фильтрации Oredictionary
+
 item.appliedenergistics2.ItemMaterial.Cell2SpatialPart.name=2³ пространственный компонент
 item.appliedenergistics2.ItemMaterial.Cell16SpatialPart.name=16³ пространственный компонент
 item.appliedenergistics2.ItemMaterial.Cell128SpatialPart.name=128³ пространственный компонент
+
 item.appliedenergistics2.ItemMaterial.Cell1kPart.name=1К МЭ компонент хранения
 item.appliedenergistics2.ItemMaterial.Cell4kPart.name=4К МЭ компонент хранения
 item.appliedenergistics2.ItemMaterial.Cell16kPart.name=16К МЭ компонент хранения
 item.appliedenergistics2.ItemMaterial.Cell64kPart.name=64К МЭ компонент хранения
+
 item.appliedenergistics2.ItemMaterial.CertusQuartzCrystal.name=Кристалл истинного кварца
 item.appliedenergistics2.ItemMaterial.CertusQuartzCrystalCharged.name=Заряженный кристалл истинного кварца
 item.appliedenergistics2.ItemMaterial.CertusQuartzDust.name=Пыль истинного кварца
 item.appliedenergistics2.ItemMaterial.EmptyStorageCell.name=МЭ корпус ячейки хранения
 item.appliedenergistics2.ItemMaterial.EnderDust.name=Пыль Края
-item.appliedenergistics2.ItemMaterial.EngProcessor.name=Инженерный процессор
+
 item.appliedenergistics2.ItemMaterial.Flour.name=Мука
 item.appliedenergistics2.ItemMaterial.FluixCrystal.name=Изменчивый кристалл
 item.appliedenergistics2.ItemMaterial.FluixDust.name=Изменчивая пыль
 item.appliedenergistics2.ItemMaterial.FluixPearl.name=Изменчивая жемчужина
-item.appliedenergistics2.ItemMaterial.FormationCore.name=Ядро формирования
+
 item.appliedenergistics2.ItemMaterial.GoldDust.name=Золотая пыль
 item.appliedenergistics2.ItemMaterial.IronDust.name=Железная пыль
 item.appliedenergistics2.ItemMaterial.IronNugget.name=Железный самородок
-item.appliedenergistics2.ItemMaterial.LogicProcessor.name=Логический процессор
-item.appliedenergistics2.ItemMaterial.LogicProcessorAsm.name=Незаконченный логический процессор
+
+
 item.appliedenergistics2.ItemMaterial.MatterBall.name=Шарик материи
 item.appliedenergistics2.ItemMaterial.NetherQuartzDust.name=Пыль кварца Нижнего мира
 item.appliedenergistics2.ItemMaterial.PurifiedCertusQuartzCrystal.name=Чистый кристалл истинного кварца
@@ -402,44 +479,58 @@ item.appliedenergistics2.ItemMaterial.Singularity.name=Сингулярност�
 item.appliedenergistics2.ItemMaterial.Wireless.name=Беспроводной приёмник
 item.appliedenergistics2.ItemMaterial.WirelessBooster.name=Беспроводной усилитель
 item.appliedenergistics2.ItemMaterial.WoodenGear.name=Деревянная шестерня
+
+item.appliedenergistics2.ItemMaterial.NamePress.name=Именующий пресс для высекателя
 item.appliedenergistics2.ItemMaterial.EngProcessorPress.name=Инженерный пресс для высекателя
 item.appliedenergistics2.ItemMaterial.CalcProcessorPress.name=Вычислительный пресс для высекателя
 item.appliedenergistics2.ItemMaterial.LogicProcessorPress.name=Логический пресс для высекателя
+item.appliedenergistics2.ItemMaterial.SiliconPress.name=Кремниевый пресс для высекателя
+
 item.appliedenergistics2.ItemMaterial.EngProcessorPrint.name=Отпечатанный инженерный контур
 item.appliedenergistics2.ItemMaterial.CalcProcessorPrint.name=Отпечатанный вычислительный контур
 item.appliedenergistics2.ItemMaterial.LogicProcessorPrint.name=Отпечатанный логический контур
-item.appliedenergistics2.ItemMaterial.SiliconPress.name=Кремниевый пресс для высекателя 
 item.appliedenergistics2.ItemMaterial.SiliconPrint.name=Отпечатанный кремний
-item.appliedenergistics2.ItemMaterial.NamePress.name=Именующий пресс для высекателя
+
+item.appliedenergistics2.ItemMaterial.EngProcessor.name=Инженерный процессор
+item.appliedenergistics2.ItemMaterial.CalcProcessor.name=Вычислительный процессор
+item.appliedenergistics2.ItemMaterial.LogicProcessor.name=Логический процессор
+item.appliedenergistics2.ItemMaterial.LogicProcessorAsm.name=Незаконченный логический процессор
+
 item.appliedenergistics2.ItemMaterial.SkyDust.name=Пыль небесного камня
 item.appliedenergistics2.ItemMaterial.CardCrafting.name=Карта создания
 
-item.appliedenergistics2.ItemPart.AnnihilationPlane.name=Плоскость истребления
+item.appliedenergistics2.ItemPart.FormationPlane.name=МЭ плоскость формирования
+item.appliedenergistics2.ItemPart.AnnihilationPlane.name=МЭ плоскость истребления
+item.appliedenergistics2.ItemPart.IdentityAnnihilationPlane.name=МЭ идентифицирующая плоскость истребления
 item.appliedenergistics2.ItemPart.CableAnchor.name=Кабельный якорь
 item.appliedenergistics2.ItemPart.CableCovered.name=МЭ закрытый кабель
 item.appliedenergistics2.ItemPart.CableGlass.name=МЭ стеклянный кабель
 item.appliedenergistics2.ItemPart.CableSmart.name=МЭ умный кабель
 item.appliedenergistics2.ItemPart.CableDense.name=МЭ плотный кабель
+item.appliedenergistics2.ItemPart.CableDenseCovered.name=МЭ покрытый плотный кабель 
+item.appliedenergistics2.ItemPart.CableUltraDenseCovered.name=МЭ покрытый магистральный кабель
+item.appliedenergistics2.ItemPart.CableUltraDenseSmart.name=ME Магистральный умный кабель
 item.appliedenergistics2.ItemPart.StorageMonitor.name=МЭ монитор хранения
 item.appliedenergistics2.ItemPart.ConversionMonitor.name=МЭ монитор преобразования
-item.appliedenergistics2.ItemPart.CraftingTerminal.name=МЭ терминал создания
 item.appliedenergistics2.ItemPart.SemiDarkMonitor.name=Осветительная панель
 item.appliedenergistics2.ItemPart.Monitor.name=Яркая осветительная панель
 item.appliedenergistics2.ItemPart.DarkMonitor.name=Тёмная осветительная панель
+
 item.appliedenergistics2.ItemPart.ExportBus.name=МЭ шина экспорта
-item.appliedenergistics2.ItemPart.FormationPlane.name=МЭ плоскость формирования
 item.appliedenergistics2.ItemPart.ImportBus.name=МЭ шина импорта
 item.appliedenergistics2.ItemPart.Interface.name=МЭ интерфейс
 item.appliedenergistics2.ItemPart.LevelEmitter.name=МЭ излучатель уровня
 item.appliedenergistics2.ItemPart.P2PTunnel.name=Туннель точка-точка
 item.appliedenergistics2.ItemPart.PatternTerminal.name=МЭ терминал шаблонов
-item.appliedenergistics2.ItemPart.QuartzFiber.name=Кварцевое оптическое волокно
+item.appliedenergistics2.ItemPart.PatternTerminalEx.name=МЭ Терминал шаблона производства
+item.appliedenergistics2.ItemPart.QuartzFiber.name=Кварцевое волокно
 item.appliedenergistics2.ItemPart.StorageBus.name=МЭ шина хранения
 item.appliedenergistics2.ItemPart.Terminal.name=МЭ терминал
+item.appliedenergistics2.ItemPart.CraftingTerminal.name=МЭ терминал создания
+item.appliedenergistics2.ItemPart.InterfaceTerminal.name=МЭ терминал интерфейсов
 item.appliedenergistics2.ItemPart.InvertedToggleBus.name=МЭ инвертированная шина переключения
 item.appliedenergistics2.ItemPart.ToggleBus.name=МЭ шина переключения
 item.appliedenergistics2.ItemPart.CraftingMonitor.name=МЭ монитор создания
-item.appliedenergistics2.ItemPart.InterfaceTerminal.name=МЭ терминал интерфейсов
 
 item.appliedenergistics2.ItemSpatialStorageCell.128Cubed.name=128³ пространственная ячейка хранения
 item.appliedenergistics2.ItemSpatialStorageCell.16Cubed.name=16³ пространственная ячейка хранения
@@ -482,6 +573,12 @@ commands.ae2.ChunkLogger=Переключает загрузку и разгру
 commands.ae2.ChunkLoggerOn=Chunk Logging теперь включён
 commands.ae2.ChunkLoggerOff=Chunk Logging теперь выключен
 commands.ae2.Supporters=Отображает список жертвователей AE2
+commands.ae2.Profiler=Grid profiling command, pass <x y z [dimension]> of some tile in the grid to start/stop profiling
+commands.ae2.ProfilerStart=Profiling started
+commands.ae2.ProfilerFailed=No AE tile here
+commands.ae2.ProfilerGridDown=This grid is offline
+commands.ae2.ProfilerStop=Average nanoseconds taken by this grid per tick:
+commands.ae2.ProfilerFailedDim=No such dimension
 
 # Achievements
 achievement.ae2.Compass=Охотник на метеориты
