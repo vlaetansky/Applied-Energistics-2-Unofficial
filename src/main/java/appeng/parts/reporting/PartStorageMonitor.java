@@ -19,7 +19,10 @@
 package appeng.parts.reporting;
 
 
+import appeng.api.networking.GridFlags;
 import appeng.client.texture.CableBusTextures;
+import appeng.core.AEConfig;
+import appeng.core.features.AEFeature;
 import appeng.helpers.Reflected;
 import net.minecraft.item.ItemStack;
 
@@ -41,6 +44,10 @@ public class PartStorageMonitor extends AbstractPartMonitor
 	public PartStorageMonitor( final ItemStack is )
 	{
 		super( is );
+
+        if ( AEConfig.instance.isFeatureEnabled( AEFeature.ChannelFreeStorageMonitor ) ) {
+            this.getProxy().getFlags().remove( GridFlags.REQUIRE_CHANNEL );
+        }
 	}
 
 	@Override

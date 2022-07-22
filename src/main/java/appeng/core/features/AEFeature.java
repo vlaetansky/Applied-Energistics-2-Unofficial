@@ -19,6 +19,8 @@
 package appeng.core.features;
 
 
+import cpw.mods.fml.common.FMLCommonHandler;
+
 public enum AEFeature
 {
 	// stuff that has no reason for ever being turned off, or that
@@ -123,7 +125,7 @@ public enum AEFeature
 	CraftingLog( Constants.CATEGORY_MISC, false ),
 	LightDetector( Constants.CATEGORY_MISC ),
 	DebugLogging( Constants.CATEGORY_MISC, false ),
-
+    ChannelFreeStorageMonitor( Constants.CATEGORY_MISC, FMLCommonHandler.instance().getEffectiveSide().isClient() ),
 	EnableFacadeCrafting( Constants.CATEGORY_CRAFTING ),
 	InWorldSingularity( Constants.CATEGORY_CRAFTING ),
 	InWorldFluix( Constants.CATEGORY_CRAFTING ),
